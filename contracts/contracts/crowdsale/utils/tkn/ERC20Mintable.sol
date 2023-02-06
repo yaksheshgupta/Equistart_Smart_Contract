@@ -10,9 +10,7 @@ import "../access/roles/MinterRole.sol";
  *
  * At construction, the deployer of the contract is the only minter.
  */
-contract ERC20Mintable is ERC20, MinterRole {
-    constructor(string memory name_, string memory symbol_)ERC20(name_,symbol_) {}
-
+abstract contract ERC20Mintable is ERC20, MinterRole {
     /**
      * @dev See {ERC20-_mint}.
      *
