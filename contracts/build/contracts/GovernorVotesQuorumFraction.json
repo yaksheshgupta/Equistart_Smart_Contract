@@ -965,74 +965,74 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts (last updated v4.7.2) (governance/extensions/GovernorVotesQuorumFraction.sol)\n\npragma solidity ^0.8.0;\n\nimport \"./GovernorVotes.sol\";\nimport \"../../utils/Checkpoints.sol\";\nimport \"../../utils/math/SafeCast.sol\";\n\n/**\n * @dev Extension of {Governor} for voting weight extraction from an {ERC20Votes} token and a quorum expressed as a\n * fraction of the total supply.\n *\n * _Available since v4.3._\n */\nabstract contract GovernorVotesQuorumFraction is GovernorVotes {\n    using Checkpoints for Checkpoints.History;\n\n    uint256 private _quorumNumerator; // DEPRECATED\n    Checkpoints.History private _quorumNumeratorHistory;\n\n    event QuorumNumeratorUpdated(uint256 oldQuorumNumerator, uint256 newQuorumNumerator);\n\n    /**\n     * @dev Initialize quorum as a fraction of the token's total supply.\n     *\n     * The fraction is specified as `numerator / denominator`. By default the denominator is 100, so quorum is\n     * specified as a percent: a numerator of 10 corresponds to quorum being 10% of total supply. The denominator can be\n     * customized by overriding {quorumDenominator}.\n     */\n    constructor(uint256 quorumNumeratorValue) {\n        _updateQuorumNumerator(quorumNumeratorValue);\n    }\n\n    /**\n     * @dev Returns the current quorum numerator. See {quorumDenominator}.\n     */\n    function quorumNumerator() public view virtual returns (uint256) {\n        return _quorumNumeratorHistory._checkpoints.length == 0 ? _quorumNumerator : _quorumNumeratorHistory.latest();\n    }\n\n    /**\n     * @dev Returns the quorum numerator at a specific block number. See {quorumDenominator}.\n     */\n    function quorumNumerator(uint256 blockNumber) public view virtual returns (uint256) {\n        // If history is empty, fallback to old storage\n        uint256 length = _quorumNumeratorHistory._checkpoints.length;\n        if (length == 0) {\n            return _quorumNumerator;\n        }\n\n        // Optimistic search, check the latest checkpoint\n        Checkpoints.Checkpoint memory latest = _quorumNumeratorHistory._checkpoints[length - 1];\n        if (latest._blockNumber <= blockNumber) {\n            return latest._value;\n        }\n\n        // Otherwize, do the binary search\n        return _quorumNumeratorHistory.getAtBlock(blockNumber);\n    }\n\n    /**\n     * @dev Returns the quorum denominator. Defaults to 100, but may be overridden.\n     */\n    function quorumDenominator() public view virtual returns (uint256) {\n        return 100;\n    }\n\n    /**\n     * @dev Returns the quorum for a block number, in terms of number of votes: `supply * numerator / denominator`.\n     */\n    function quorum(uint256 blockNumber) public view virtual override returns (uint256) {\n        return (token.getPastTotalSupply(blockNumber) * quorumNumerator(blockNumber)) / quorumDenominator();\n    }\n\n    /**\n     * @dev Changes the quorum numerator.\n     *\n     * Emits a {QuorumNumeratorUpdated} event.\n     *\n     * Requirements:\n     *\n     * - Must be called through a governance proposal.\n     * - New numerator must be smaller or equal to the denominator.\n     */\n    function updateQuorumNumerator(uint256 newQuorumNumerator) external virtual onlyGovernance {\n        _updateQuorumNumerator(newQuorumNumerator);\n    }\n\n    /**\n     * @dev Changes the quorum numerator.\n     *\n     * Emits a {QuorumNumeratorUpdated} event.\n     *\n     * Requirements:\n     *\n     * - New numerator must be smaller or equal to the denominator.\n     */\n    function _updateQuorumNumerator(uint256 newQuorumNumerator) internal virtual {\n        require(\n            newQuorumNumerator <= quorumDenominator(),\n            \"GovernorVotesQuorumFraction: quorumNumerator over quorumDenominator\"\n        );\n\n        uint256 oldQuorumNumerator = quorumNumerator();\n\n        // Make sure we keep track of the original numerator in contracts upgraded from a version without checkpoints.\n        if (oldQuorumNumerator != 0 && _quorumNumeratorHistory._checkpoints.length == 0) {\n            _quorumNumeratorHistory._checkpoints.push(\n                Checkpoints.Checkpoint({_blockNumber: 0, _value: SafeCast.toUint224(oldQuorumNumerator)})\n            );\n        }\n\n        // Set new quorum for future proposals\n        _quorumNumeratorHistory.push(newQuorumNumerator);\n\n        emit QuorumNumeratorUpdated(oldQuorumNumerator, newQuorumNumerator);\n    }\n}\n",
-  "sourcePath": "/Users/yaksheshgupta/Desktop/equistart-1/contracts/contracts/.deps/npm/@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFraction.sol",
+  "sourcePath": "/Users/yaksheshgupta/Desktop/Equistart_Smart_Contract/contracts/contracts/.deps/npm/@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFraction.sol",
   "ast": {
     "absolutePath": "project:/contracts/.deps/npm/@openzeppelin/contracts/governance/extensions/GovernorVotesQuorumFraction.sol",
     "exportedSymbols": {
       "Address": [
-        16555
+        16938
       ],
       "Checkpoints": [
-        16789
+        17172
       ],
       "Context": [
-        16811
+        17194
       ],
       "DoubleEndedQueue": [
-        20599
+        20982
       ],
       "ECDSA": [
-        17713
+        18096
       ],
       "EIP712": [
-        17867
+        18250
       ],
       "ERC165": [
-        17891
+        18274
       ],
       "Governor": [
-        13578
+        13961
       ],
       "GovernorVotes": [
-        15425
+        15808
       ],
       "GovernorVotesQuorumFraction": [
-        15628
+        16011
       ],
       "IERC1155Receiver": [
-        16242
+        16625
       ],
       "IERC165": [
-        17903
+        18286
       ],
       "IERC721Receiver": [
-        16260
+        16643
       ],
       "IGovernor": [
-        13875
+        14258
       ],
       "IVotes": [
-        15747
+        16130
       ],
       "Math": [
-        18407
+        18790
       ],
       "SafeCast": [
-        20258
+        20641
       ],
       "Strings": [
-        17111
+        17494
       ],
       "Timers": [
-        17325
+        17708
       ]
     },
-    "id": 15629,
+    "id": 16012,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 15427,
+        "id": 15810,
         "literals": [
           "solidity",
           "^",
@@ -1040,41 +1040,41 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "137:23:43"
+        "src": "137:23:46"
       },
       {
         "absolutePath": "project:/contracts/.deps/npm/@openzeppelin/contracts/governance/extensions/GovernorVotes.sol",
         "file": "./GovernorVotes.sol",
-        "id": 15428,
+        "id": 15811,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 15629,
-        "sourceUnit": 15426,
-        "src": "162:29:43",
+        "scope": 16012,
+        "sourceUnit": 15809,
+        "src": "162:29:46",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
         "absolutePath": "project:/contracts/.deps/npm/@openzeppelin/contracts/utils/Checkpoints.sol",
         "file": "../../utils/Checkpoints.sol",
-        "id": 15429,
+        "id": 15812,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 15629,
-        "sourceUnit": 16790,
-        "src": "192:37:43",
+        "scope": 16012,
+        "sourceUnit": 17173,
+        "src": "192:37:46",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
         "absolutePath": "project:/contracts/.deps/npm/@openzeppelin/contracts/utils/math/SafeCast.sol",
         "file": "../../utils/math/SafeCast.sol",
-        "id": 15430,
+        "id": 15813,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 15629,
-        "sourceUnit": 20259,
-        "src": "230:39:43",
+        "scope": 16012,
+        "sourceUnit": 20642,
+        "src": "230:39:46",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -1083,83 +1083,83 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 15432,
+              "id": 15815,
               "name": "GovernorVotes",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 15425,
-              "src": "507:13:43"
+              "referencedDeclaration": 15808,
+              "src": "507:13:46"
             },
-            "id": 15433,
+            "id": 15816,
             "nodeType": "InheritanceSpecifier",
-            "src": "507:13:43"
+            "src": "507:13:46"
           }
         ],
         "canonicalName": "GovernorVotesQuorumFraction",
         "contractDependencies": [],
         "contractKind": "contract",
         "documentation": {
-          "id": 15431,
+          "id": 15814,
           "nodeType": "StructuredDocumentation",
-          "src": "271:186:43",
+          "src": "271:186:46",
           "text": " @dev Extension of {Governor} for voting weight extraction from an {ERC20Votes} token and a quorum expressed as a\n fraction of the total supply.\n _Available since v4.3._"
         },
         "fullyImplemented": false,
-        "id": 15628,
+        "id": 16011,
         "linearizedBaseContracts": [
-          15628,
-          15425,
-          13578,
-          16242,
-          16260,
-          13875,
-          17867,
-          17891,
-          17903,
-          16811
+          16011,
+          15808,
+          13961,
+          16625,
+          16643,
+          14258,
+          18250,
+          18274,
+          18286,
+          17194
         ],
         "name": "GovernorVotesQuorumFraction",
-        "nameLocation": "476:27:43",
+        "nameLocation": "476:27:46",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "global": false,
-            "id": 15437,
+            "id": 15820,
             "libraryName": {
-              "id": 15434,
+              "id": 15817,
               "name": "Checkpoints",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 16789,
-              "src": "533:11:43"
+              "referencedDeclaration": 17172,
+              "src": "533:11:46"
             },
             "nodeType": "UsingForDirective",
-            "src": "527:42:43",
+            "src": "527:42:46",
             "typeName": {
-              "id": 15436,
+              "id": 15819,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 15435,
+                "id": 15818,
                 "name": "Checkpoints.History",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 16570,
-                "src": "549:19:43"
+                "referencedDeclaration": 16953,
+                "src": "549:19:46"
               },
-              "referencedDeclaration": 16570,
-              "src": "549:19:43",
+              "referencedDeclaration": 16953,
+              "src": "549:19:46",
               "typeDescriptions": {
-                "typeIdentifier": "t_struct$_History_$16570_storage_ptr",
+                "typeIdentifier": "t_struct$_History_$16953_storage_ptr",
                 "typeString": "struct Checkpoints.History"
               }
             }
           },
           {
             "constant": false,
-            "id": 15439,
+            "id": 15822,
             "mutability": "mutable",
             "name": "_quorumNumerator",
-            "nameLocation": "591:16:43",
+            "nameLocation": "591:16:46",
             "nodeType": "VariableDeclaration",
-            "scope": 15628,
-            "src": "575:32:43",
+            "scope": 16011,
+            "src": "575:32:46",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -1167,10 +1167,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 15438,
+              "id": 15821,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
-              "src": "575:7:43",
+              "src": "575:7:46",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -1180,33 +1180,33 @@
           },
           {
             "constant": false,
-            "id": 15442,
+            "id": 15825,
             "mutability": "mutable",
             "name": "_quorumNumeratorHistory",
-            "nameLocation": "655:23:43",
+            "nameLocation": "655:23:46",
             "nodeType": "VariableDeclaration",
-            "scope": 15628,
-            "src": "627:51:43",
+            "scope": 16011,
+            "src": "627:51:46",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_struct$_History_$16570_storage",
+              "typeIdentifier": "t_struct$_History_$16953_storage",
               "typeString": "struct Checkpoints.History"
             },
             "typeName": {
-              "id": 15441,
+              "id": 15824,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 15440,
+                "id": 15823,
                 "name": "Checkpoints.History",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 16570,
-                "src": "627:19:43"
+                "referencedDeclaration": 16953,
+                "src": "627:19:46"
               },
-              "referencedDeclaration": 16570,
-              "src": "627:19:43",
+              "referencedDeclaration": 16953,
+              "src": "627:19:46",
               "typeDescriptions": {
-                "typeIdentifier": "t_struct$_History_$16570_storage_ptr",
+                "typeIdentifier": "t_struct$_History_$16953_storage_ptr",
                 "typeString": "struct Checkpoints.History"
               }
             },
@@ -1215,24 +1215,24 @@
           {
             "anonymous": false,
             "eventSelector": "0553476bf02ef2726e8ce5ced78d63e26e602e4a2257b1f559418e24b4633997",
-            "id": 15448,
+            "id": 15831,
             "name": "QuorumNumeratorUpdated",
-            "nameLocation": "691:22:43",
+            "nameLocation": "691:22:46",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 15447,
+              "id": 15830,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 15444,
+                  "id": 15827,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "oldQuorumNumerator",
-                  "nameLocation": "722:18:43",
+                  "nameLocation": "722:18:46",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15448,
-                  "src": "714:26:43",
+                  "scope": 15831,
+                  "src": "714:26:46",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1240,10 +1240,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 15443,
+                    "id": 15826,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "714:7:43",
+                    "src": "714:7:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1253,14 +1253,14 @@
                 },
                 {
                   "constant": false,
-                  "id": 15446,
+                  "id": 15829,
                   "indexed": false,
                   "mutability": "mutable",
                   "name": "newQuorumNumerator",
-                  "nameLocation": "750:18:43",
+                  "nameLocation": "750:18:46",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15448,
-                  "src": "742:26:43",
+                  "scope": 15831,
+                  "src": "742:26:46",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1268,10 +1268,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 15445,
+                    "id": 15828,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "742:7:43",
+                    "src": "742:7:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1280,26 +1280,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "713:56:43"
+              "src": "713:56:46"
             },
-            "src": "685:85:43"
+            "src": "685:85:46"
           },
           {
             "body": {
-              "id": 15458,
+              "id": 15841,
               "nodeType": "Block",
-              "src": "1199:61:43",
+              "src": "1199:61:46",
               "statements": [
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "id": 15455,
+                        "id": 15838,
                         "name": "quorumNumeratorValue",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15451,
-                        "src": "1232:20:43",
+                        "referencedDeclaration": 15834,
+                        "src": "1232:20:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1313,18 +1313,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 15454,
+                      "id": 15837,
                       "name": "_updateQuorumNumerator",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 15627,
-                      "src": "1209:22:43",
+                      "referencedDeclaration": 16010,
+                      "src": "1209:22:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 15456,
+                    "id": 15839,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1332,26 +1332,26 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1209:44:43",
+                    "src": "1209:44:46",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 15457,
+                  "id": 15840,
                   "nodeType": "ExpressionStatement",
-                  "src": "1209:44:43"
+                  "src": "1209:44:46"
                 }
               ]
             },
             "documentation": {
-              "id": 15449,
+              "id": 15832,
               "nodeType": "StructuredDocumentation",
-              "src": "776:376:43",
+              "src": "776:376:46",
               "text": " @dev Initialize quorum as a fraction of the token's total supply.\n The fraction is specified as `numerator / denominator`. By default the denominator is 100, so quorum is\n specified as a percent: a numerator of 10 corresponds to quorum being 10% of total supply. The denominator can be\n customized by overriding {quorumDenominator}."
             },
-            "id": 15459,
+            "id": 15842,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -1359,18 +1359,18 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 15452,
+              "id": 15835,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 15451,
+                  "id": 15834,
                   "mutability": "mutable",
                   "name": "quorumNumeratorValue",
-                  "nameLocation": "1177:20:43",
+                  "nameLocation": "1177:20:46",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15459,
-                  "src": "1169:28:43",
+                  "scope": 15842,
+                  "src": "1169:28:46",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1378,10 +1378,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 15450,
+                    "id": 15833,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1169:7:43",
+                    "src": "1169:7:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1390,25 +1390,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1168:30:43"
+              "src": "1168:30:46"
             },
             "returnParameters": {
-              "id": 15453,
+              "id": 15836,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1199:0:43"
+              "src": "1199:0:46"
             },
-            "scope": 15628,
-            "src": "1157:103:43",
+            "scope": 16011,
+            "src": "1157:103:46",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 15476,
+              "id": 15859,
               "nodeType": "Block",
-              "src": "1422:126:43",
+              "src": "1422:126:46",
               "statements": [
                 {
                   "expression": {
@@ -1417,7 +1417,7 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 15469,
+                      "id": 15852,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1425,39 +1425,39 @@
                       "leftExpression": {
                         "expression": {
                           "expression": {
-                            "id": 15465,
+                            "id": 15848,
                             "name": "_quorumNumeratorHistory",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 15442,
-                            "src": "1439:23:43",
+                            "referencedDeclaration": 15825,
+                            "src": "1439:23:46",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_History_$16570_storage",
+                              "typeIdentifier": "t_struct$_History_$16953_storage",
                               "typeString": "struct Checkpoints.History storage ref"
                             }
                           },
-                          "id": 15466,
+                          "id": 15849,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
                           "lValueRequested": false,
                           "memberName": "_checkpoints",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 16569,
-                          "src": "1439:36:43",
+                          "referencedDeclaration": 16952,
+                          "src": "1439:36:46",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_array$_t_struct$_Checkpoint_$16565_storage_$dyn_storage",
+                            "typeIdentifier": "t_array$_t_struct$_Checkpoint_$16948_storage_$dyn_storage",
                             "typeString": "struct Checkpoints.Checkpoint storage ref[] storage ref"
                           }
                         },
-                        "id": 15467,
+                        "id": 15850,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "length",
                         "nodeType": "MemberAccess",
-                        "src": "1439:43:43",
+                        "src": "1439:43:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1467,21 +1467,21 @@
                       "operator": "==",
                       "rightExpression": {
                         "hexValue": "30",
-                        "id": 15468,
+                        "id": 15851,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "number",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "1486:1:43",
+                        "src": "1486:1:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_rational_0_by_1",
                           "typeString": "int_const 0"
                         },
                         "value": "0"
                       },
-                      "src": "1439:48:43",
+                      "src": "1439:48:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -1492,32 +1492,32 @@
                       "expression": {
                         "argumentTypes": [],
                         "expression": {
-                          "id": 15471,
+                          "id": 15854,
                           "name": "_quorumNumeratorHistory",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 15442,
-                          "src": "1509:23:43",
+                          "referencedDeclaration": 15825,
+                          "src": "1509:23:46",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_History_$16570_storage",
+                            "typeIdentifier": "t_struct$_History_$16953_storage",
                             "typeString": "struct Checkpoints.History storage ref"
                           }
                         },
-                        "id": 15472,
+                        "id": 15855,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "latest",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 16599,
-                        "src": "1509:30:43",
+                        "referencedDeclaration": 16982,
+                        "src": "1509:30:46",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_function_internal_view$_t_struct$_History_$16570_storage_ptr_$returns$_t_uint256_$bound_to$_t_struct$_History_$16570_storage_ptr_$",
+                          "typeIdentifier": "t_function_internal_view$_t_struct$_History_$16953_storage_ptr_$returns$_t_uint256_$bound_to$_t_struct$_History_$16953_storage_ptr_$",
                           "typeString": "function (struct Checkpoints.History storage pointer) view returns (uint256)"
                         }
                       },
-                      "id": 15473,
+                      "id": 15856,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1525,27 +1525,27 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "1509:32:43",
+                      "src": "1509:32:46",
                       "tryCall": false,
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "id": 15474,
+                    "id": 15857,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "Conditional",
-                    "src": "1439:102:43",
+                    "src": "1439:102:46",
                     "trueExpression": {
-                      "id": 15470,
+                      "id": 15853,
                       "name": "_quorumNumerator",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 15439,
-                      "src": "1490:16:43",
+                      "referencedDeclaration": 15822,
+                      "src": "1490:16:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1556,46 +1556,46 @@
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 15464,
-                  "id": 15475,
+                  "functionReturnParameters": 15847,
+                  "id": 15858,
                   "nodeType": "Return",
-                  "src": "1432:109:43"
+                  "src": "1432:109:46"
                 }
               ]
             },
             "documentation": {
-              "id": 15460,
+              "id": 15843,
               "nodeType": "StructuredDocumentation",
-              "src": "1266:86:43",
+              "src": "1266:86:46",
               "text": " @dev Returns the current quorum numerator. See {quorumDenominator}."
             },
             "functionSelector": "a7713a70",
-            "id": 15477,
+            "id": 15860,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "quorumNumerator",
-            "nameLocation": "1366:15:43",
+            "nameLocation": "1366:15:46",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 15461,
+              "id": 15844,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1381:2:43"
+              "src": "1381:2:46"
             },
             "returnParameters": {
-              "id": 15464,
+              "id": 15847,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 15463,
+                  "id": 15846,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15477,
-                  "src": "1413:7:43",
+                  "scope": 15860,
+                  "src": "1413:7:46",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1603,10 +1603,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 15462,
+                    "id": 15845,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1413:7:43",
+                    "src": "1413:7:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1615,34 +1615,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1412:9:43"
+              "src": "1412:9:46"
             },
-            "scope": 15628,
-            "src": "1357:191:43",
+            "scope": 16011,
+            "src": "1357:191:46",
             "stateMutability": "view",
             "virtual": true,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 15524,
+              "id": 15907,
               "nodeType": "Block",
-              "src": "1748:565:43",
+              "src": "1748:565:46",
               "statements": [
                 {
                   "assignments": [
-                    15486
+                    15869
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 15486,
+                      "id": 15869,
                       "mutability": "mutable",
                       "name": "length",
-                      "nameLocation": "1822:6:43",
+                      "nameLocation": "1822:6:46",
                       "nodeType": "VariableDeclaration",
-                      "scope": 15524,
-                      "src": "1814:14:43",
+                      "scope": 15907,
+                      "src": "1814:14:46",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1650,10 +1650,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 15485,
+                        "id": 15868,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1814:7:43",
+                        "src": "1814:7:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1662,50 +1662,50 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 15490,
+                  "id": 15873,
                   "initialValue": {
                     "expression": {
                       "expression": {
-                        "id": 15487,
+                        "id": 15870,
                         "name": "_quorumNumeratorHistory",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15442,
-                        "src": "1831:23:43",
+                        "referencedDeclaration": 15825,
+                        "src": "1831:23:46",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_History_$16570_storage",
+                          "typeIdentifier": "t_struct$_History_$16953_storage",
                           "typeString": "struct Checkpoints.History storage ref"
                         }
                       },
-                      "id": 15488,
+                      "id": 15871,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "_checkpoints",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 16569,
-                      "src": "1831:36:43",
+                      "referencedDeclaration": 16952,
+                      "src": "1831:36:46",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_array$_t_struct$_Checkpoint_$16565_storage_$dyn_storage",
+                        "typeIdentifier": "t_array$_t_struct$_Checkpoint_$16948_storage_$dyn_storage",
                         "typeString": "struct Checkpoints.Checkpoint storage ref[] storage ref"
                       }
                     },
-                    "id": 15489,
+                    "id": 15872,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "memberName": "length",
                     "nodeType": "MemberAccess",
-                    "src": "1831:43:43",
+                    "src": "1831:43:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1814:60:43"
+                  "src": "1814:60:46"
                 },
                 {
                   "condition": {
@@ -1713,18 +1713,18 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 15493,
+                    "id": 15876,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 15491,
+                      "id": 15874,
                       "name": "length",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 15486,
-                      "src": "1888:6:43",
+                      "referencedDeclaration": 15869,
+                      "src": "1888:6:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1734,142 +1734,142 @@
                     "operator": "==",
                     "rightExpression": {
                       "hexValue": "30",
-                      "id": 15492,
+                      "id": 15875,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "1898:1:43",
+                      "src": "1898:1:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
                         "typeString": "int_const 0"
                       },
                       "value": "0"
                     },
-                    "src": "1888:11:43",
+                    "src": "1888:11:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 15497,
+                  "id": 15880,
                   "nodeType": "IfStatement",
-                  "src": "1884:65:43",
+                  "src": "1884:65:46",
                   "trueBody": {
-                    "id": 15496,
+                    "id": 15879,
                     "nodeType": "Block",
-                    "src": "1901:48:43",
+                    "src": "1901:48:46",
                     "statements": [
                       {
                         "expression": {
-                          "id": 15494,
+                          "id": 15877,
                           "name": "_quorumNumerator",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 15439,
-                          "src": "1922:16:43",
+                          "referencedDeclaration": 15822,
+                          "src": "1922:16:46",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           }
                         },
-                        "functionReturnParameters": 15484,
-                        "id": 15495,
+                        "functionReturnParameters": 15867,
+                        "id": 15878,
                         "nodeType": "Return",
-                        "src": "1915:23:43"
+                        "src": "1915:23:46"
                       }
                     ]
                   }
                 },
                 {
                   "assignments": [
-                    15502
+                    15885
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 15502,
+                      "id": 15885,
                       "mutability": "mutable",
                       "name": "latest",
-                      "nameLocation": "2047:6:43",
+                      "nameLocation": "2047:6:46",
                       "nodeType": "VariableDeclaration",
-                      "scope": 15524,
-                      "src": "2017:36:43",
+                      "scope": 15907,
+                      "src": "2017:36:46",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Checkpoint_$16565_memory_ptr",
+                        "typeIdentifier": "t_struct$_Checkpoint_$16948_memory_ptr",
                         "typeString": "struct Checkpoints.Checkpoint"
                       },
                       "typeName": {
-                        "id": 15501,
+                        "id": 15884,
                         "nodeType": "UserDefinedTypeName",
                         "pathNode": {
-                          "id": 15500,
+                          "id": 15883,
                           "name": "Checkpoints.Checkpoint",
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 16565,
-                          "src": "2017:22:43"
+                          "referencedDeclaration": 16948,
+                          "src": "2017:22:46"
                         },
-                        "referencedDeclaration": 16565,
-                        "src": "2017:22:43",
+                        "referencedDeclaration": 16948,
+                        "src": "2017:22:46",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Checkpoint_$16565_storage_ptr",
+                          "typeIdentifier": "t_struct$_Checkpoint_$16948_storage_ptr",
                           "typeString": "struct Checkpoints.Checkpoint"
                         }
                       },
                       "visibility": "internal"
                     }
                   ],
-                  "id": 15509,
+                  "id": 15892,
                   "initialValue": {
                     "baseExpression": {
                       "expression": {
-                        "id": 15503,
+                        "id": 15886,
                         "name": "_quorumNumeratorHistory",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15442,
-                        "src": "2056:23:43",
+                        "referencedDeclaration": 15825,
+                        "src": "2056:23:46",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_History_$16570_storage",
+                          "typeIdentifier": "t_struct$_History_$16953_storage",
                           "typeString": "struct Checkpoints.History storage ref"
                         }
                       },
-                      "id": 15504,
+                      "id": 15887,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "_checkpoints",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 16569,
-                      "src": "2056:36:43",
+                      "referencedDeclaration": 16952,
+                      "src": "2056:36:46",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_array$_t_struct$_Checkpoint_$16565_storage_$dyn_storage",
+                        "typeIdentifier": "t_array$_t_struct$_Checkpoint_$16948_storage_$dyn_storage",
                         "typeString": "struct Checkpoints.Checkpoint storage ref[] storage ref"
                       }
                     },
-                    "id": 15508,
+                    "id": 15891,
                     "indexExpression": {
                       "commonType": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 15507,
+                      "id": 15890,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 15505,
+                        "id": 15888,
                         "name": "length",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15486,
-                        "src": "2093:6:43",
+                        "referencedDeclaration": 15869,
+                        "src": "2093:6:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1879,21 +1879,21 @@
                       "operator": "-",
                       "rightExpression": {
                         "hexValue": "31",
-                        "id": 15506,
+                        "id": 15889,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "number",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "2102:1:43",
+                        "src": "2102:1:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_rational_1_by_1",
                           "typeString": "int_const 1"
                         },
                         "value": "1"
                       },
-                      "src": "2093:10:43",
+                      "src": "2093:10:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1904,14 +1904,14 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "2056:48:43",
+                    "src": "2056:48:46",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Checkpoint_$16565_storage",
+                      "typeIdentifier": "t_struct$_Checkpoint_$16948_storage",
                       "typeString": "struct Checkpoints.Checkpoint storage ref"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "2017:87:43"
+                  "src": "2017:87:46"
                 },
                 {
                   "condition": {
@@ -1919,33 +1919,33 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 15513,
+                    "id": 15896,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "expression": {
-                        "id": 15510,
+                        "id": 15893,
                         "name": "latest",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15502,
-                        "src": "2118:6:43",
+                        "referencedDeclaration": 15885,
+                        "src": "2118:6:46",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Checkpoint_$16565_memory_ptr",
+                          "typeIdentifier": "t_struct$_Checkpoint_$16948_memory_ptr",
                           "typeString": "struct Checkpoints.Checkpoint memory"
                         }
                       },
-                      "id": 15511,
+                      "id": 15894,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "_blockNumber",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 16562,
-                      "src": "2118:19:43",
+                      "referencedDeclaration": 16945,
+                      "src": "2118:19:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint32",
                         "typeString": "uint32"
@@ -1954,63 +1954,63 @@
                     "nodeType": "BinaryOperation",
                     "operator": "<=",
                     "rightExpression": {
-                      "id": 15512,
+                      "id": 15895,
                       "name": "blockNumber",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 15480,
-                      "src": "2141:11:43",
+                      "referencedDeclaration": 15863,
+                      "src": "2141:11:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "2118:34:43",
+                    "src": "2118:34:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 15518,
+                  "id": 15901,
                   "nodeType": "IfStatement",
-                  "src": "2114:85:43",
+                  "src": "2114:85:46",
                   "trueBody": {
-                    "id": 15517,
+                    "id": 15900,
                     "nodeType": "Block",
-                    "src": "2154:45:43",
+                    "src": "2154:45:46",
                     "statements": [
                       {
                         "expression": {
                           "expression": {
-                            "id": 15514,
+                            "id": 15897,
                             "name": "latest",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 15502,
-                            "src": "2175:6:43",
+                            "referencedDeclaration": 15885,
+                            "src": "2175:6:46",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_Checkpoint_$16565_memory_ptr",
+                              "typeIdentifier": "t_struct$_Checkpoint_$16948_memory_ptr",
                               "typeString": "struct Checkpoints.Checkpoint memory"
                             }
                           },
-                          "id": 15515,
+                          "id": 15898,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
                           "lValueRequested": false,
                           "memberName": "_value",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 16564,
-                          "src": "2175:13:43",
+                          "referencedDeclaration": 16947,
+                          "src": "2175:13:46",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint224",
                             "typeString": "uint224"
                           }
                         },
-                        "functionReturnParameters": 15484,
-                        "id": 15516,
+                        "functionReturnParameters": 15867,
+                        "id": 15899,
                         "nodeType": "Return",
-                        "src": "2168:20:43"
+                        "src": "2168:20:46"
                       }
                     ]
                   }
@@ -2019,12 +2019,12 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 15521,
+                        "id": 15904,
                         "name": "blockNumber",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15480,
-                        "src": "2294:11:43",
+                        "referencedDeclaration": 15863,
+                        "src": "2294:11:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -2039,32 +2039,32 @@
                         }
                       ],
                       "expression": {
-                        "id": 15519,
+                        "id": 15902,
                         "name": "_quorumNumeratorHistory",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15442,
-                        "src": "2259:23:43",
+                        "referencedDeclaration": 15825,
+                        "src": "2259:23:46",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_History_$16570_storage",
+                          "typeIdentifier": "t_struct$_History_$16953_storage",
                           "typeString": "struct Checkpoints.History storage ref"
                         }
                       },
-                      "id": 15520,
+                      "id": 15903,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "getAtBlock",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 16675,
-                      "src": "2259:34:43",
+                      "referencedDeclaration": 17058,
+                      "src": "2259:34:46",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_view$_t_struct$_History_$16570_storage_ptr_$_t_uint256_$returns$_t_uint256_$bound_to$_t_struct$_History_$16570_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_view$_t_struct$_History_$16953_storage_ptr_$_t_uint256_$returns$_t_uint256_$bound_to$_t_struct$_History_$16953_storage_ptr_$",
                         "typeString": "function (struct Checkpoints.History storage pointer,uint256) view returns (uint256)"
                       }
                     },
-                    "id": 15522,
+                    "id": 15905,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2072,47 +2072,47 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "2259:47:43",
+                    "src": "2259:47:46",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 15484,
-                  "id": 15523,
+                  "functionReturnParameters": 15867,
+                  "id": 15906,
                   "nodeType": "Return",
-                  "src": "2252:54:43"
+                  "src": "2252:54:46"
                 }
               ]
             },
             "documentation": {
-              "id": 15478,
+              "id": 15861,
               "nodeType": "StructuredDocumentation",
-              "src": "1554:105:43",
+              "src": "1554:105:46",
               "text": " @dev Returns the quorum numerator at a specific block number. See {quorumDenominator}."
             },
             "functionSelector": "60c4247f",
-            "id": 15525,
+            "id": 15908,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "quorumNumerator",
-            "nameLocation": "1673:15:43",
+            "nameLocation": "1673:15:46",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 15481,
+              "id": 15864,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 15480,
+                  "id": 15863,
                   "mutability": "mutable",
                   "name": "blockNumber",
-                  "nameLocation": "1697:11:43",
+                  "nameLocation": "1697:11:46",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15525,
-                  "src": "1689:19:43",
+                  "scope": 15908,
+                  "src": "1689:19:46",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2120,10 +2120,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 15479,
+                    "id": 15862,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1689:7:43",
+                    "src": "1689:7:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2132,21 +2132,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1688:21:43"
+              "src": "1688:21:46"
             },
             "returnParameters": {
-              "id": 15484,
+              "id": 15867,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 15483,
+                  "id": 15866,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15525,
-                  "src": "1739:7:43",
+                  "scope": 15908,
+                  "src": "1739:7:46",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2154,10 +2154,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 15482,
+                    "id": 15865,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1739:7:43",
+                    "src": "1739:7:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2166,77 +2166,77 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1738:9:43"
+              "src": "1738:9:46"
             },
-            "scope": 15628,
-            "src": "1664:649:43",
+            "scope": 16011,
+            "src": "1664:649:46",
             "stateMutability": "view",
             "virtual": true,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 15533,
+              "id": 15916,
               "nodeType": "Block",
-              "src": "2486:27:43",
+              "src": "2486:27:46",
               "statements": [
                 {
                   "expression": {
                     "hexValue": "313030",
-                    "id": 15531,
+                    "id": 15914,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "number",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "2503:3:43",
+                    "src": "2503:3:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_rational_100_by_1",
                       "typeString": "int_const 100"
                     },
                     "value": "100"
                   },
-                  "functionReturnParameters": 15530,
-                  "id": 15532,
+                  "functionReturnParameters": 15913,
+                  "id": 15915,
                   "nodeType": "Return",
-                  "src": "2496:10:43"
+                  "src": "2496:10:46"
                 }
               ]
             },
             "documentation": {
-              "id": 15526,
+              "id": 15909,
               "nodeType": "StructuredDocumentation",
-              "src": "2319:95:43",
+              "src": "2319:95:46",
               "text": " @dev Returns the quorum denominator. Defaults to 100, but may be overridden."
             },
             "functionSelector": "97c3d334",
-            "id": 15534,
+            "id": 15917,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "quorumDenominator",
-            "nameLocation": "2428:17:43",
+            "nameLocation": "2428:17:46",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 15527,
+              "id": 15910,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2445:2:43"
+              "src": "2445:2:46"
             },
             "returnParameters": {
-              "id": 15530,
+              "id": 15913,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 15529,
+                  "id": 15912,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15534,
-                  "src": "2477:7:43",
+                  "scope": 15917,
+                  "src": "2477:7:46",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2244,10 +2244,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 15528,
+                    "id": 15911,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2477:7:43",
+                    "src": "2477:7:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2256,22 +2256,22 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2476:9:43"
+              "src": "2476:9:46"
             },
-            "scope": 15628,
-            "src": "2419:94:43",
+            "scope": 16011,
+            "src": "2419:94:46",
             "stateMutability": "view",
             "virtual": true,
             "visibility": "public"
           },
           {
             "baseFunctions": [
-              13736
+              14119
             ],
             "body": {
-              "id": 15556,
+              "id": 15939,
               "nodeType": "Block",
-              "src": "2735:116:43",
+              "src": "2735:116:46",
               "statements": [
                 {
                   "expression": {
@@ -2279,7 +2279,7 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 15554,
+                    "id": 15937,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2291,7 +2291,7 @@
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           },
-                          "id": 15550,
+                          "id": 15933,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2299,12 +2299,12 @@
                           "leftExpression": {
                             "arguments": [
                               {
-                                "id": 15545,
+                                "id": 15928,
                                 "name": "blockNumber",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 15537,
-                                "src": "2778:11:43",
+                                "referencedDeclaration": 15920,
+                                "src": "2778:11:46",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
                                   "typeString": "uint256"
@@ -2319,32 +2319,32 @@
                                 }
                               ],
                               "expression": {
-                                "id": 15543,
+                                "id": 15926,
                                 "name": "token",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 15393,
-                                "src": "2753:5:43",
+                                "referencedDeclaration": 15776,
+                                "src": "2753:5:46",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_IVotes_$15747",
+                                  "typeIdentifier": "t_contract$_IVotes_$16130",
                                   "typeString": "contract IVotes"
                                 }
                               },
-                              "id": 15544,
+                              "id": 15927,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
                               "lValueRequested": false,
                               "memberName": "getPastTotalSupply",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 15716,
-                              "src": "2753:24:43",
+                              "referencedDeclaration": 16099,
+                              "src": "2753:24:46",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_external_view$_t_uint256_$returns$_t_uint256_$",
                                 "typeString": "function (uint256) view external returns (uint256)"
                               }
                             },
-                            "id": 15546,
+                            "id": 15929,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -2352,7 +2352,7 @@
                             "lValueRequested": false,
                             "names": [],
                             "nodeType": "FunctionCall",
-                            "src": "2753:37:43",
+                            "src": "2753:37:46",
                             "tryCall": false,
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
@@ -2364,12 +2364,12 @@
                           "rightExpression": {
                             "arguments": [
                               {
-                                "id": 15548,
+                                "id": 15931,
                                 "name": "blockNumber",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 15537,
-                                "src": "2809:11:43",
+                                "referencedDeclaration": 15920,
+                                "src": "2809:11:46",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
                                   "typeString": "uint256"
@@ -2383,21 +2383,21 @@
                                   "typeString": "uint256"
                                 }
                               ],
-                              "id": 15547,
+                              "id": 15930,
                               "name": "quorumNumerator",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [
-                                15477,
-                                15525
+                                15860,
+                                15908
                               ],
-                              "referencedDeclaration": 15525,
-                              "src": "2793:15:43",
+                              "referencedDeclaration": 15908,
+                              "src": "2793:15:46",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_internal_view$_t_uint256_$returns$_t_uint256_$",
                                 "typeString": "function (uint256) view returns (uint256)"
                               }
                             },
-                            "id": 15549,
+                            "id": 15932,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -2405,28 +2405,28 @@
                             "lValueRequested": false,
                             "names": [],
                             "nodeType": "FunctionCall",
-                            "src": "2793:28:43",
+                            "src": "2793:28:46",
                             "tryCall": false,
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint256",
                               "typeString": "uint256"
                             }
                           },
-                          "src": "2753:68:43",
+                          "src": "2753:68:46",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           }
                         }
                       ],
-                      "id": 15551,
+                      "id": 15934,
                       "isConstant": false,
                       "isInlineArray": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "nodeType": "TupleExpression",
-                      "src": "2752:70:43",
+                      "src": "2752:70:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -2438,18 +2438,18 @@
                       "arguments": [],
                       "expression": {
                         "argumentTypes": [],
-                        "id": 15552,
+                        "id": 15935,
                         "name": "quorumDenominator",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15534,
-                        "src": "2825:17:43",
+                        "referencedDeclaration": 15917,
+                        "src": "2825:17:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
                           "typeString": "function () view returns (uint256)"
                         }
                       },
-                      "id": 15553,
+                      "id": 15936,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -2457,59 +2457,59 @@
                       "lValueRequested": false,
                       "names": [],
                       "nodeType": "FunctionCall",
-                      "src": "2825:19:43",
+                      "src": "2825:19:46",
                       "tryCall": false,
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "2752:92:43",
+                    "src": "2752:92:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 15542,
-                  "id": 15555,
+                  "functionReturnParameters": 15925,
+                  "id": 15938,
                   "nodeType": "Return",
-                  "src": "2745:99:43"
+                  "src": "2745:99:46"
                 }
               ]
             },
             "documentation": {
-              "id": 15535,
+              "id": 15918,
               "nodeType": "StructuredDocumentation",
-              "src": "2519:127:43",
+              "src": "2519:127:46",
               "text": " @dev Returns the quorum for a block number, in terms of number of votes: `supply * numerator / denominator`."
             },
             "functionSelector": "f8ce560a",
-            "id": 15557,
+            "id": 15940,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "quorum",
-            "nameLocation": "2660:6:43",
+            "nameLocation": "2660:6:46",
             "nodeType": "FunctionDefinition",
             "overrides": {
-              "id": 15539,
+              "id": 15922,
               "nodeType": "OverrideSpecifier",
               "overrides": [],
-              "src": "2708:8:43"
+              "src": "2708:8:46"
             },
             "parameters": {
-              "id": 15538,
+              "id": 15921,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 15537,
+                  "id": 15920,
                   "mutability": "mutable",
                   "name": "blockNumber",
-                  "nameLocation": "2675:11:43",
+                  "nameLocation": "2675:11:46",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15557,
-                  "src": "2667:19:43",
+                  "scope": 15940,
+                  "src": "2667:19:46",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2517,10 +2517,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 15536,
+                    "id": 15919,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2667:7:43",
+                    "src": "2667:7:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2529,21 +2529,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2666:21:43"
+              "src": "2666:21:46"
             },
             "returnParameters": {
-              "id": 15542,
+              "id": 15925,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 15541,
+                  "id": 15924,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15557,
-                  "src": "2726:7:43",
+                  "scope": 15940,
+                  "src": "2726:7:46",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2551,10 +2551,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 15540,
+                    "id": 15923,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2726:7:43",
+                    "src": "2726:7:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2563,30 +2563,30 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2725:9:43"
+              "src": "2725:9:46"
             },
-            "scope": 15628,
-            "src": "2651:200:43",
+            "scope": 16011,
+            "src": "2651:200:46",
             "stateMutability": "view",
             "virtual": true,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 15569,
+              "id": 15952,
               "nodeType": "Block",
-              "src": "3218:59:43",
+              "src": "3218:59:46",
               "statements": [
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "id": 15566,
+                        "id": 15949,
                         "name": "newQuorumNumerator",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15560,
-                        "src": "3251:18:43",
+                        "referencedDeclaration": 15943,
+                        "src": "3251:18:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -2600,18 +2600,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 15565,
+                      "id": 15948,
                       "name": "_updateQuorumNumerator",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 15627,
-                      "src": "3228:22:43",
+                      "referencedDeclaration": 16010,
+                      "src": "3228:22:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$returns$__$",
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 15567,
+                    "id": 15950,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2619,60 +2619,60 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "3228:42:43",
+                    "src": "3228:42:46",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 15568,
+                  "id": 15951,
                   "nodeType": "ExpressionStatement",
-                  "src": "3228:42:43"
+                  "src": "3228:42:46"
                 }
               ]
             },
             "documentation": {
-              "id": 15558,
+              "id": 15941,
               "nodeType": "StructuredDocumentation",
-              "src": "2857:265:43",
+              "src": "2857:265:46",
               "text": " @dev Changes the quorum numerator.\n Emits a {QuorumNumeratorUpdated} event.\n Requirements:\n - Must be called through a governance proposal.\n - New numerator must be smaller or equal to the denominator."
             },
             "functionSelector": "06f3f9e6",
-            "id": 15570,
+            "id": 15953,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 15563,
+                "id": 15946,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 15562,
+                  "id": 15945,
                   "name": "onlyGovernance",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 12386,
-                  "src": "3203:14:43"
+                  "referencedDeclaration": 12769,
+                  "src": "3203:14:46"
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "3203:14:43"
+                "src": "3203:14:46"
               }
             ],
             "name": "updateQuorumNumerator",
-            "nameLocation": "3136:21:43",
+            "nameLocation": "3136:21:46",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 15561,
+              "id": 15944,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 15560,
+                  "id": 15943,
                   "mutability": "mutable",
                   "name": "newQuorumNumerator",
-                  "nameLocation": "3166:18:43",
+                  "nameLocation": "3166:18:46",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15570,
-                  "src": "3158:26:43",
+                  "scope": 15953,
+                  "src": "3158:26:46",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2680,10 +2680,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 15559,
+                    "id": 15942,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3158:7:43",
+                    "src": "3158:7:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2692,25 +2692,25 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3157:28:43"
+              "src": "3157:28:46"
             },
             "returnParameters": {
-              "id": 15564,
+              "id": 15947,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3218:0:43"
+              "src": "3218:0:46"
             },
-            "scope": 15628,
-            "src": "3127:150:43",
+            "scope": 16011,
+            "src": "3127:150:46",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "external"
           },
           {
             "body": {
-              "id": 15626,
+              "id": 16009,
               "nodeType": "Block",
-              "src": "3575:810:43",
+              "src": "3575:810:46",
               "statements": [
                 {
                   "expression": {
@@ -2720,18 +2720,18 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 15580,
+                        "id": 15963,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
-                          "id": 15577,
+                          "id": 15960,
                           "name": "newQuorumNumerator",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 15573,
-                          "src": "3606:18:43",
+                          "referencedDeclaration": 15956,
+                          "src": "3606:18:46",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
@@ -2743,18 +2743,18 @@
                           "arguments": [],
                           "expression": {
                             "argumentTypes": [],
-                            "id": 15578,
+                            "id": 15961,
                             "name": "quorumDenominator",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 15534,
-                            "src": "3628:17:43",
+                            "referencedDeclaration": 15917,
+                            "src": "3628:17:46",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
                               "typeString": "function () view returns (uint256)"
                             }
                           },
-                          "id": 15579,
+                          "id": 15962,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2762,14 +2762,14 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "3628:19:43",
+                          "src": "3628:19:46",
                           "tryCall": false,
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
                             "typeString": "uint256"
                           }
                         },
-                        "src": "3606:41:43",
+                        "src": "3606:41:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -2777,14 +2777,14 @@
                       },
                       {
                         "hexValue": "476f7665726e6f72566f74657351756f72756d4672616374696f6e3a2071756f72756d4e756d657261746f72206f7665722071756f72756d44656e6f6d696e61746f72",
-                        "id": 15581,
+                        "id": 15964,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "3661:69:43",
+                        "src": "3661:69:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_0687f8064c09ccf183090b5092c4485c730072a161487645a7e37b56cef356bb",
                           "typeString": "literal_string \"GovernorVotesQuorumFraction: quorumNumerator over quorumDenominator\""
@@ -2803,7 +2803,7 @@
                           "typeString": "literal_string \"GovernorVotesQuorumFraction: quorumNumerator over quorumDenominator\""
                         }
                       ],
-                      "id": 15576,
+                      "id": 15959,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -2811,13 +2811,13 @@
                         4294967278
                       ],
                       "referencedDeclaration": 4294967278,
-                      "src": "3585:7:43",
+                      "src": "3585:7:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 15582,
+                    "id": 15965,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2825,31 +2825,31 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "3585:155:43",
+                    "src": "3585:155:46",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 15583,
+                  "id": 15966,
                   "nodeType": "ExpressionStatement",
-                  "src": "3585:155:43"
+                  "src": "3585:155:46"
                 },
                 {
                   "assignments": [
-                    15585
+                    15968
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 15585,
+                      "id": 15968,
                       "mutability": "mutable",
                       "name": "oldQuorumNumerator",
-                      "nameLocation": "3759:18:43",
+                      "nameLocation": "3759:18:46",
                       "nodeType": "VariableDeclaration",
-                      "scope": 15626,
-                      "src": "3751:26:43",
+                      "scope": 16009,
+                      "src": "3751:26:46",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -2857,10 +2857,10 @@
                         "typeString": "uint256"
                       },
                       "typeName": {
-                        "id": 15584,
+                        "id": 15967,
                         "name": "uint256",
                         "nodeType": "ElementaryTypeName",
-                        "src": "3751:7:43",
+                        "src": "3751:7:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -2869,26 +2869,26 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 15588,
+                  "id": 15971,
                   "initialValue": {
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 15586,
+                      "id": 15969,
                       "name": "quorumNumerator",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        15477,
-                        15525
+                        15860,
+                        15908
                       ],
-                      "referencedDeclaration": 15477,
-                      "src": "3780:15:43",
+                      "referencedDeclaration": 15860,
+                      "src": "3780:15:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
                         "typeString": "function () view returns (uint256)"
                       }
                     },
-                    "id": 15587,
+                    "id": 15970,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2896,7 +2896,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "3780:17:43",
+                    "src": "3780:17:46",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
@@ -2904,7 +2904,7 @@
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "3751:46:43"
+                  "src": "3751:46:46"
                 },
                 {
                   "condition": {
@@ -2912,7 +2912,7 @@
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     },
-                    "id": 15597,
+                    "id": 15980,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2922,18 +2922,18 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 15591,
+                      "id": 15974,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 15589,
+                        "id": 15972,
                         "name": "oldQuorumNumerator",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15585,
-                        "src": "3931:18:43",
+                        "referencedDeclaration": 15968,
+                        "src": "3931:18:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -2943,21 +2943,21 @@
                       "operator": "!=",
                       "rightExpression": {
                         "hexValue": "30",
-                        "id": 15590,
+                        "id": 15973,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "number",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "3953:1:43",
+                        "src": "3953:1:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_rational_0_by_1",
                           "typeString": "int_const 0"
                         },
                         "value": "0"
                       },
-                      "src": "3931:23:43",
+                      "src": "3931:23:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
@@ -2970,7 +2970,7 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 15596,
+                      "id": 15979,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -2978,39 +2978,39 @@
                       "leftExpression": {
                         "expression": {
                           "expression": {
-                            "id": 15592,
+                            "id": 15975,
                             "name": "_quorumNumeratorHistory",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 15442,
-                            "src": "3958:23:43",
+                            "referencedDeclaration": 15825,
+                            "src": "3958:23:46",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_struct$_History_$16570_storage",
+                              "typeIdentifier": "t_struct$_History_$16953_storage",
                               "typeString": "struct Checkpoints.History storage ref"
                             }
                           },
-                          "id": 15593,
+                          "id": 15976,
                           "isConstant": false,
                           "isLValue": true,
                           "isPure": false,
                           "lValueRequested": false,
                           "memberName": "_checkpoints",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 16569,
-                          "src": "3958:36:43",
+                          "referencedDeclaration": 16952,
+                          "src": "3958:36:46",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_array$_t_struct$_Checkpoint_$16565_storage_$dyn_storage",
+                            "typeIdentifier": "t_array$_t_struct$_Checkpoint_$16948_storage_$dyn_storage",
                             "typeString": "struct Checkpoints.Checkpoint storage ref[] storage ref"
                           }
                         },
-                        "id": 15594,
+                        "id": 15977,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "length",
                         "nodeType": "MemberAccess",
-                        "src": "3958:43:43",
+                        "src": "3958:43:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -3020,39 +3020,39 @@
                       "operator": "==",
                       "rightExpression": {
                         "hexValue": "30",
-                        "id": 15595,
+                        "id": 15978,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "number",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "4005:1:43",
+                        "src": "4005:1:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_rational_0_by_1",
                           "typeString": "int_const 0"
                         },
                         "value": "0"
                       },
-                      "src": "3958:48:43",
+                      "src": "3958:48:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bool",
                         "typeString": "bool"
                       }
                     },
-                    "src": "3931:75:43",
+                    "src": "3931:75:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "id": 15614,
+                  "id": 15997,
                   "nodeType": "IfStatement",
-                  "src": "3927:268:43",
+                  "src": "3927:268:46",
                   "trueBody": {
-                    "id": 15613,
+                    "id": 15996,
                     "nodeType": "Block",
-                    "src": "4008:187:43",
+                    "src": "4008:187:46",
                     "statements": [
                       {
                         "expression": {
@@ -3061,14 +3061,14 @@
                               "arguments": [
                                 {
                                   "hexValue": "30",
-                                  "id": 15605,
+                                  "id": 15988,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
                                   "kind": "number",
                                   "lValueRequested": false,
                                   "nodeType": "Literal",
-                                  "src": "4119:1:43",
+                                  "src": "4119:1:46",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_rational_0_by_1",
                                     "typeString": "int_const 0"
@@ -3078,12 +3078,12 @@
                                 {
                                   "arguments": [
                                     {
-                                      "id": 15608,
+                                      "id": 15991,
                                       "name": "oldQuorumNumerator",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
-                                      "referencedDeclaration": 15585,
-                                      "src": "4149:18:43",
+                                      "referencedDeclaration": 15968,
+                                      "src": "4149:18:46",
                                       "typeDescriptions": {
                                         "typeIdentifier": "t_uint256",
                                         "typeString": "uint256"
@@ -3098,32 +3098,32 @@
                                       }
                                     ],
                                     "expression": {
-                                      "id": 15606,
+                                      "id": 15989,
                                       "name": "SafeCast",
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
-                                      "referencedDeclaration": 20258,
-                                      "src": "4130:8:43",
+                                      "referencedDeclaration": 20641,
+                                      "src": "4130:8:46",
                                       "typeDescriptions": {
-                                        "typeIdentifier": "t_type$_t_contract$_SafeCast_$20258_$",
+                                        "typeIdentifier": "t_type$_t_contract$_SafeCast_$20641_$",
                                         "typeString": "type(library SafeCast)"
                                       }
                                     },
-                                    "id": 15607,
+                                    "id": 15990,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": false,
                                     "lValueRequested": false,
                                     "memberName": "toUint224",
                                     "nodeType": "MemberAccess",
-                                    "referencedDeclaration": 18510,
-                                    "src": "4130:18:43",
+                                    "referencedDeclaration": 18893,
+                                    "src": "4130:18:46",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_function_internal_pure$_t_uint256_$returns$_t_uint224_$",
                                       "typeString": "function (uint256) pure returns (uint224)"
                                     }
                                   },
-                                  "id": 15609,
+                                  "id": 15992,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": false,
@@ -3131,7 +3131,7 @@
                                   "lValueRequested": false,
                                   "names": [],
                                   "nodeType": "FunctionCall",
-                                  "src": "4130:38:43",
+                                  "src": "4130:38:46",
                                   "tryCall": false,
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_uint224",
@@ -3151,32 +3151,32 @@
                                   }
                                 ],
                                 "expression": {
-                                  "id": 15603,
+                                  "id": 15986,
                                   "name": "Checkpoints",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 16789,
-                                  "src": "4081:11:43",
+                                  "referencedDeclaration": 17172,
+                                  "src": "4081:11:46",
                                   "typeDescriptions": {
-                                    "typeIdentifier": "t_type$_t_contract$_Checkpoints_$16789_$",
+                                    "typeIdentifier": "t_type$_t_contract$_Checkpoints_$17172_$",
                                     "typeString": "type(library Checkpoints)"
                                   }
                                 },
-                                "id": 15604,
+                                "id": 15987,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
                                 "lValueRequested": false,
                                 "memberName": "Checkpoint",
                                 "nodeType": "MemberAccess",
-                                "referencedDeclaration": 16565,
-                                "src": "4081:22:43",
+                                "referencedDeclaration": 16948,
+                                "src": "4081:22:46",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_type$_t_struct$_Checkpoint_$16565_storage_ptr_$",
+                                  "typeIdentifier": "t_type$_t_struct$_Checkpoint_$16948_storage_ptr_$",
                                   "typeString": "type(struct Checkpoints.Checkpoint storage pointer)"
                                 }
                               },
-                              "id": 15610,
+                              "id": 15993,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -3187,10 +3187,10 @@
                                 "_value"
                               ],
                               "nodeType": "FunctionCall",
-                              "src": "4081:89:43",
+                              "src": "4081:89:46",
                               "tryCall": false,
                               "typeDescriptions": {
-                                "typeIdentifier": "t_struct$_Checkpoint_$16565_memory_ptr",
+                                "typeIdentifier": "t_struct$_Checkpoint_$16948_memory_ptr",
                                 "typeString": "struct Checkpoints.Checkpoint memory"
                               }
                             }
@@ -3198,51 +3198,51 @@
                           "expression": {
                             "argumentTypes": [
                               {
-                                "typeIdentifier": "t_struct$_Checkpoint_$16565_memory_ptr",
+                                "typeIdentifier": "t_struct$_Checkpoint_$16948_memory_ptr",
                                 "typeString": "struct Checkpoints.Checkpoint memory"
                               }
                             ],
                             "expression": {
                               "expression": {
-                                "id": 15598,
+                                "id": 15981,
                                 "name": "_quorumNumeratorHistory",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 15442,
-                                "src": "4022:23:43",
+                                "referencedDeclaration": 15825,
+                                "src": "4022:23:46",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_struct$_History_$16570_storage",
+                                  "typeIdentifier": "t_struct$_History_$16953_storage",
                                   "typeString": "struct Checkpoints.History storage ref"
                                 }
                               },
-                              "id": 15601,
+                              "id": 15984,
                               "isConstant": false,
                               "isLValue": true,
                               "isPure": false,
                               "lValueRequested": false,
                               "memberName": "_checkpoints",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 16569,
-                              "src": "4022:36:43",
+                              "referencedDeclaration": 16952,
+                              "src": "4022:36:46",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_array$_t_struct$_Checkpoint_$16565_storage_$dyn_storage",
+                                "typeIdentifier": "t_array$_t_struct$_Checkpoint_$16948_storage_$dyn_storage",
                                 "typeString": "struct Checkpoints.Checkpoint storage ref[] storage ref"
                               }
                             },
-                            "id": 15602,
+                            "id": 15985,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
                             "lValueRequested": false,
                             "memberName": "push",
                             "nodeType": "MemberAccess",
-                            "src": "4022:41:43",
+                            "src": "4022:41:46",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_Checkpoint_$16565_storage_$dyn_storage_ptr_$_t_struct$_Checkpoint_$16565_storage_$returns$__$bound_to$_t_array$_t_struct$_Checkpoint_$16565_storage_$dyn_storage_ptr_$",
+                              "typeIdentifier": "t_function_arraypush_nonpayable$_t_array$_t_struct$_Checkpoint_$16948_storage_$dyn_storage_ptr_$_t_struct$_Checkpoint_$16948_storage_$returns$__$bound_to$_t_array$_t_struct$_Checkpoint_$16948_storage_$dyn_storage_ptr_$",
                               "typeString": "function (struct Checkpoints.Checkpoint storage ref[] storage pointer,struct Checkpoints.Checkpoint storage ref)"
                             }
                           },
-                          "id": 15611,
+                          "id": 15994,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -3250,16 +3250,16 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "4022:162:43",
+                          "src": "4022:162:46",
                           "tryCall": false,
                           "typeDescriptions": {
                             "typeIdentifier": "t_tuple$__$",
                             "typeString": "tuple()"
                           }
                         },
-                        "id": 15612,
+                        "id": 15995,
                         "nodeType": "ExpressionStatement",
-                        "src": "4022:162:43"
+                        "src": "4022:162:46"
                       }
                     ]
                   }
@@ -3268,12 +3268,12 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 15618,
+                        "id": 16001,
                         "name": "newQuorumNumerator",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15573,
-                        "src": "4281:18:43",
+                        "referencedDeclaration": 15956,
+                        "src": "4281:18:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -3288,32 +3288,32 @@
                         }
                       ],
                       "expression": {
-                        "id": 15615,
+                        "id": 15998,
                         "name": "_quorumNumeratorHistory",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15442,
-                        "src": "4252:23:43",
+                        "referencedDeclaration": 15825,
+                        "src": "4252:23:46",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_History_$16570_storage",
+                          "typeIdentifier": "t_struct$_History_$16953_storage",
                           "typeString": "struct Checkpoints.History storage ref"
                         }
                       },
-                      "id": 15617,
+                      "id": 16000,
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "push",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 16754,
-                      "src": "4252:28:43",
+                      "referencedDeclaration": 17137,
+                      "src": "4252:28:46",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_History_$16570_storage_ptr_$_t_uint256_$returns$_t_uint256_$_t_uint256_$bound_to$_t_struct$_History_$16570_storage_ptr_$",
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_struct$_History_$16953_storage_ptr_$_t_uint256_$returns$_t_uint256_$_t_uint256_$bound_to$_t_struct$_History_$16953_storage_ptr_$",
                         "typeString": "function (struct Checkpoints.History storage pointer,uint256) returns (uint256,uint256)"
                       }
                     },
-                    "id": 15619,
+                    "id": 16002,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3321,39 +3321,39 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "4252:48:43",
+                    "src": "4252:48:46",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$_t_uint256_$_t_uint256_$",
                       "typeString": "tuple(uint256,uint256)"
                     }
                   },
-                  "id": 15620,
+                  "id": 16003,
                   "nodeType": "ExpressionStatement",
-                  "src": "4252:48:43"
+                  "src": "4252:48:46"
                 },
                 {
                   "eventCall": {
                     "arguments": [
                       {
-                        "id": 15622,
+                        "id": 16005,
                         "name": "oldQuorumNumerator",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15585,
-                        "src": "4339:18:43",
+                        "referencedDeclaration": 15968,
+                        "src": "4339:18:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         }
                       },
                       {
-                        "id": 15623,
+                        "id": 16006,
                         "name": "newQuorumNumerator",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 15573,
-                        "src": "4359:18:43",
+                        "referencedDeclaration": 15956,
+                        "src": "4359:18:46",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -3371,18 +3371,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 15621,
+                      "id": 16004,
                       "name": "QuorumNumeratorUpdated",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 15448,
-                      "src": "4316:22:43",
+                      "referencedDeclaration": 15831,
+                      "src": "4316:22:46",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_uint256_$returns$__$",
                         "typeString": "function (uint256,uint256)"
                       }
                     },
-                    "id": 15624,
+                    "id": 16007,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3390,45 +3390,45 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "4316:62:43",
+                    "src": "4316:62:46",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 15625,
+                  "id": 16008,
                   "nodeType": "EmitStatement",
-                  "src": "4311:67:43"
+                  "src": "4311:67:46"
                 }
               ]
             },
             "documentation": {
-              "id": 15571,
+              "id": 15954,
               "nodeType": "StructuredDocumentation",
-              "src": "3283:210:43",
+              "src": "3283:210:46",
               "text": " @dev Changes the quorum numerator.\n Emits a {QuorumNumeratorUpdated} event.\n Requirements:\n - New numerator must be smaller or equal to the denominator."
             },
-            "id": 15627,
+            "id": 16010,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "_updateQuorumNumerator",
-            "nameLocation": "3507:22:43",
+            "nameLocation": "3507:22:46",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 15574,
+              "id": 15957,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 15573,
+                  "id": 15956,
                   "mutability": "mutable",
                   "name": "newQuorumNumerator",
-                  "nameLocation": "3538:18:43",
+                  "nameLocation": "3538:18:46",
                   "nodeType": "VariableDeclaration",
-                  "scope": 15627,
-                  "src": "3530:26:43",
+                  "scope": 16010,
+                  "src": "3530:26:46",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -3436,10 +3436,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 15572,
+                    "id": 15955,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "3530:7:43",
+                    "src": "3530:7:46",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -3448,29 +3448,29 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "3529:28:43"
+              "src": "3529:28:46"
             },
             "returnParameters": {
-              "id": 15575,
+              "id": 15958,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "3575:0:43"
+              "src": "3575:0:46"
             },
-            "scope": 15628,
-            "src": "3498:887:43",
+            "scope": 16011,
+            "src": "3498:887:46",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "internal"
           }
         ],
-        "scope": 15629,
-        "src": "458:3929:43",
+        "scope": 16012,
+        "src": "458:3929:46",
         "usedErrors": [
-          20265
+          20648
         ]
       }
     ],
-    "src": "137:4251:43"
+    "src": "137:4251:46"
   },
   "compiler": {
     "name": "solc",
@@ -3478,7 +3478,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.7",
-  "updatedAt": "2022-12-23T08:04:45.407Z",
+  "updatedAt": "2023-02-06T14:37:51.738Z",
   "devdoc": {
     "details": "Extension of {Governor} for voting weight extraction from an {ERC20Votes} token and a quorum expressed as a fraction of the total supply. _Available since v4.3._",
     "errors": {
