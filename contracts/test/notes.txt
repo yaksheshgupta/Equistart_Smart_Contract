@@ -21,7 +21,7 @@ here accounts holds all the wallet addresses which will be used later
 
 
  Understanding the test Cases-
- 1. Crowdsale.test.js
+ 1. MyCrowdSale_V0.test.js
 In this contract we transfer the tokens form ERC20Token address to CrowdSale address and testing some functions
 1. Create the instance of the contracts ERC20Token and CrowdSale
 2. Here token is used for instance of ERC20Token and instance is used for Crowdsale
@@ -32,6 +32,15 @@ In this contract we transfer the tokens form ERC20Token address to CrowdSale add
     - we have used sendTransaction to send some eth.
     - assert is used to check if the transaction was success and amount of token is transfered is right or not.
     NOTE- sendTransaction is not a function in the SmartContract but it is a buildIn funtion to call recieve() funtion which is there in contract
+
+2. MyCrowdSale_V1.test.js
+In this work is same as as the above contract to buy tokens from Crowdsale, But added "Time Limits" and "Capped Limits".
+    1.Create the instance of the contracts ERC20Token and CrowdSale;
+    2. "Try buying tokens from crowdsale before opening time"- Checking if the contract allows user to buy tokens before the opening time;
+    3. "Try buying tokens from crowdsale over CAP_size i.e 10"- Cap has been set to "10"(Refer 2_MYCS_deploy), Checking if the contract allows 
+    user to buy tokens more than 10;
+    4. "Try buying tokens from crowdsale after opeingTime with cap-10"- Trying to buy token in prefered state i.e. Within permitted time and under allowed cap.
+    5. "Try buying tokens from crowdsale after closing time"- hecking if the contract allows user to buy tokens after the closing time;
 =======
  2. CrowdSaleFactory.test.js
 In this contract user can create custom crowdsale

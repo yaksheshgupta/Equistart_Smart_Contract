@@ -229,7 +229,7 @@
         1412
       ],
       "Crowdsale": [
-        3439
+        3344
       ],
       "ERC20": [
         640
@@ -259,7 +259,7 @@
         5276
       ],
       "TimedCrowdsale": [
-        5709
+        5697
       ],
       "__unstable__TokenVault": [
         3640
@@ -287,7 +287,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3641,
-        "sourceUnit": 5710,
+        "sourceUnit": 5698,
         "src": "57:42:236",
         "symbolAliases": [],
         "unitAlias": ""
@@ -336,7 +336,7 @@
               "id": 3511,
               "name": "TimedCrowdsale",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 5709,
+              "referencedDeclaration": 5697,
               "src": "409:14:236"
             },
             "id": 3512,
@@ -359,8 +359,8 @@
         "id": 3616,
         "linearizedBaseContracts": [
           3616,
-          5709,
-          3439,
+          5697,
+          3344,
           53,
           1412
         ],
@@ -600,7 +600,7 @@
                           "name": "hasClosed",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 5659,
+                          "referencedDeclaration": 5647,
                           "src": "839:9:236",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
@@ -947,7 +947,7 @@
                         "name": "token",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3152,
+                        "referencedDeclaration": 3057,
                         "src": "1123:5:236",
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_IERC20_$718",
@@ -1244,7 +1244,7 @@
           },
           {
             "baseFunctions": [
-              3403
+              3308
             ],
             "body": {
               "id": 3614,
@@ -1482,7 +1482,7 @@
                       "name": "_deliverTokens",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 3389,
+                      "referencedDeclaration": 3294,
                       "src": "1924:14:236",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -1880,7 +1880,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.7",
-  "updatedAt": "2023-02-06T21:49:46.651Z",
+  "updatedAt": "2023-02-09T14:19:21.984Z",
   "devdoc": {
     "details": "Crowdsale that locks tokens from withdrawal until it ends.",
     "kind": "dev",

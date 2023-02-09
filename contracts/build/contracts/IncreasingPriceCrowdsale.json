@@ -249,7 +249,7 @@
         1412
       ],
       "Crowdsale": [
-        3439
+        3344
       ],
       "ERC20": [
         640
@@ -276,7 +276,7 @@
         2589
       ],
       "TimedCrowdsale": [
-        5709
+        5697
       ]
     },
     "id": 4113,
@@ -301,7 +301,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 4113,
-        "sourceUnit": 5710,
+        "sourceUnit": 5698,
         "src": "57:42:241",
         "symbolAliases": [],
         "unitAlias": ""
@@ -326,7 +326,7 @@
               "id": 3974,
               "name": "TimedCrowdsale",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 5709,
+              "referencedDeclaration": 5697,
               "src": "545:14:241"
             },
             "id": 3975,
@@ -347,8 +347,8 @@
         "id": 4112,
         "linearizedBaseContracts": [
           4112,
-          5709,
-          3439,
+          5697,
+          3344,
           53,
           1412
         ],
@@ -1148,7 +1148,7 @@
                         "name": "isOpen",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5647,
+                        "referencedDeclaration": 5635,
                         "src": "1971:6:241",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
@@ -1252,7 +1252,7 @@
                           "name": "openingTime",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 5621,
+                          "referencedDeclaration": 5609,
                           "src": "2120:11:241",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
@@ -1384,7 +1384,7 @@
                           "name": "openingTime",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 5621,
+                          "referencedDeclaration": 5609,
                           "src": "2182:11:241",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
@@ -1422,7 +1422,7 @@
                           "name": "closingTime",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 5630,
+                          "referencedDeclaration": 5618,
                           "src": "2164:11:241",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
@@ -1811,7 +1811,7 @@
           },
           {
             "baseFunctions": [
-              3426
+              3331
             ],
             "body": {
               "id": 4110,
@@ -2063,7 +2063,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.7",
-  "updatedAt": "2023-02-06T21:49:46.659Z",
+  "updatedAt": "2023-02-09T14:19:22.003Z",
   "devdoc": {
     "details": "Extension of Crowdsale contract that increases the price of tokens linearly in time. Note that what should be provided to the constructor is the initial and final _rates_, that is, the amount of tokens per wei contributed. Thus, the initial rate must be greater than the final rate.",
     "kind": "dev",

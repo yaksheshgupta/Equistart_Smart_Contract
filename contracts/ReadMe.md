@@ -63,10 +63,24 @@
 
 #### To test every test-case individually 
 *code- `turffle test <FILE NAME>`*
-1. for *crowdsale* type `truffle test crowdsale.test.js` and hit *enter*
+1. for *TokenFactory* type `truffle test TokenFactory.test.js` and hit *enter*
 2. for *CrowdSaleFactory* type `truffle test CrowdSaleFactory.test.js` and hit *enter*
-3. for *ERC20Token* type `truffle test ERC20Token.test.js` and hit *enter*
-4. for *MyGovernor* type `truffle test MyGovernor.test.js` and hit *enter*
-5. for *TokenFactory* type `truffle test TokenFactory.test.js` and hit *enter*
-  
+#### ERC20Token 
+1. for *ERC20Token_v1* type `truffle test ERC20Token_test/ERC20Token_v1.test.js` and hit *enter*
+2. for *ERC20Token_v2* type `truffle test ERC20Token_test/ERC20Token_v2.test.js` and hit *enter*
+#### My Governor 
+1. for *MyGovernor_v0* type `truffle test Mygovernor_test/MyGovernor_v0.test.js` and hit *enter*
+2. for *MyGovernor_v1* type `truffle test Mygovernor_test/MyGovernor_v1.test.js` and hit *enter*
+3. for *MyGovernor_v2* type `truffle test Mygovernor_test/MyGovernor_v2.test.js` and hit *enter*
+4. for *MyGovernor_v3* type `truffle test Mygovernor_test/MyGovernor_v3.test.js` and hit *enter*
+
+#### MyCrowdsale
+1. for *MyCrowdSale_V0* type `truffle test MyCrowdsale_test/MyCrowdSale_V0.test.js` and hit *enter*
+2. for *MyCrowdSale_V1* type `truffle test MyCrowdsale_test/MyCrowdSale_V1.test.js` and hit *enter*
+
+### Things to remember before running test cases-
+##### 1.Dont forget to change the owner and sensitive parameters in migration folder.
+##### 2.Restart the ganache after *MyCrowdSale_V1* as time changes for ganache to check *Timed Crowdsale*
+
+
 ### If test cases are behaving not currectly -> [refer](notes.txt)
