@@ -250,7 +250,7 @@
         1412
       ],
       "Crowdsale": [
-        3439
+        3344
       ],
       "ERC20": [
         640
@@ -265,7 +265,7 @@
         779
       ],
       "IndividuallyCappedCrowdsale": [
-        5521
+        5509
       ],
       "ReentrancyGuard": [
         53
@@ -280,12 +280,12 @@
         2589
       ]
     },
-    "id": 5522,
+    "id": 5510,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5399,
+        "id": 5387,
         "literals": [
           "solidity",
           "^",
@@ -298,10 +298,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/utils/math/SafeMath.sol",
         "file": "@openzeppelin/contracts/utils/math/SafeMath.sol",
-        "id": 5400,
+        "id": 5388,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 5522,
+        "scope": 5510,
         "sourceUnit": 2590,
         "src": "57:57:255",
         "symbolAliases": [],
@@ -310,11 +310,11 @@
       {
         "absolutePath": "project:/contracts/crowdsale/Crowdsale.sol",
         "file": "../Crowdsale.sol",
-        "id": 5401,
+        "id": 5389,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 5522,
-        "sourceUnit": 3440,
+        "scope": 5510,
+        "sourceUnit": 3345,
         "src": "115:26:255",
         "symbolAliases": [],
         "unitAlias": ""
@@ -322,10 +322,10 @@
       {
         "absolutePath": "project:/contracts/crowdsale/utils/access/roles/CapperRole.sol",
         "file": "../utils/access/roles/CapperRole.sol",
-        "id": 5402,
+        "id": 5390,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 5522,
+        "scope": 5510,
         "sourceUnit": 4311,
         "src": "142:46:255",
         "symbolAliases": [],
@@ -336,25 +336,25 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 5404,
+              "id": 5392,
               "name": "Crowdsale",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 3439,
+              "referencedDeclaration": 3344,
               "src": "330:9:255"
             },
-            "id": 5405,
+            "id": 5393,
             "nodeType": "InheritanceSpecifier",
             "src": "330:9:255"
           },
           {
             "baseName": {
-              "id": 5406,
+              "id": 5394,
               "name": "CapperRole",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 4310,
               "src": "341:10:255"
             },
-            "id": 5407,
+            "id": 5395,
             "nodeType": "InheritanceSpecifier",
             "src": "341:10:255"
           }
@@ -363,17 +363,17 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "documentation": {
-          "id": 5403,
+          "id": 5391,
           "nodeType": "StructuredDocumentation",
           "src": "190:90:255",
           "text": " @title IndividuallyCappedCrowdsale\n @dev Crowdsale with per-beneficiary caps."
         },
         "fullyImplemented": false,
-        "id": 5521,
+        "id": 5509,
         "linearizedBaseContracts": [
-          5521,
+          5509,
           4310,
-          3439,
+          3344,
           53,
           1412
         ],
@@ -383,9 +383,9 @@
         "nodes": [
           {
             "global": false,
-            "id": 5410,
+            "id": 5398,
             "libraryName": {
-              "id": 5408,
+              "id": 5396,
               "name": "SafeMath",
               "nodeType": "IdentifierPath",
               "referencedDeclaration": 2589,
@@ -394,7 +394,7 @@
             "nodeType": "UsingForDirective",
             "src": "358:27:255",
             "typeName": {
-              "id": 5409,
+              "id": 5397,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "377:7:255",
@@ -406,12 +406,12 @@
           },
           {
             "constant": false,
-            "id": 5414,
+            "id": 5402,
             "mutability": "mutable",
             "name": "_contributions",
             "nameLocation": "427:14:255",
             "nodeType": "VariableDeclaration",
-            "scope": 5521,
+            "scope": 5509,
             "src": "391:50:255",
             "stateVariable": true,
             "storageLocation": "default",
@@ -420,9 +420,9 @@
               "typeString": "mapping(address => uint256)"
             },
             "typeName": {
-              "id": 5413,
+              "id": 5401,
               "keyType": {
-                "id": 5411,
+                "id": 5399,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "399:7:255",
@@ -438,7 +438,7 @@
                 "typeString": "mapping(address => uint256)"
               },
               "valueType": {
-                "id": 5412,
+                "id": 5400,
                 "name": "uint256",
                 "nodeType": "ElementaryTypeName",
                 "src": "410:7:255",
@@ -452,12 +452,12 @@
           },
           {
             "constant": false,
-            "id": 5418,
+            "id": 5406,
             "mutability": "mutable",
             "name": "_caps",
             "nameLocation": "483:5:255",
             "nodeType": "VariableDeclaration",
-            "scope": 5521,
+            "scope": 5509,
             "src": "447:41:255",
             "stateVariable": true,
             "storageLocation": "default",
@@ -466,9 +466,9 @@
               "typeString": "mapping(address => uint256)"
             },
             "typeName": {
-              "id": 5417,
+              "id": 5405,
               "keyType": {
-                "id": 5415,
+                "id": 5403,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "455:7:255",
@@ -484,7 +484,7 @@
                 "typeString": "mapping(address => uint256)"
               },
               "valueType": {
-                "id": 5416,
+                "id": 5404,
                 "name": "uint256",
                 "nodeType": "ElementaryTypeName",
                 "src": "466:7:255",
@@ -498,37 +498,37 @@
           },
           {
             "body": {
-              "id": 5434,
+              "id": 5422,
               "nodeType": "Block",
               "src": "748:41:255",
               "statements": [
                 {
                   "expression": {
-                    "id": 5432,
+                    "id": 5420,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "baseExpression": {
-                        "id": 5428,
+                        "id": 5416,
                         "name": "_caps",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5418,
+                        "referencedDeclaration": 5406,
                         "src": "758:5:255",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 5430,
+                      "id": 5418,
                       "indexExpression": {
-                        "id": 5429,
+                        "id": 5417,
                         "name": "beneficiary",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5421,
+                        "referencedDeclaration": 5409,
                         "src": "764:11:255",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -549,11 +549,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 5431,
+                      "id": 5419,
                       "name": "cap",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5423,
+                      "referencedDeclaration": 5411,
                       "src": "779:3:255",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -566,28 +566,28 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 5433,
+                  "id": 5421,
                   "nodeType": "ExpressionStatement",
                   "src": "758:24:255"
                 }
               ]
             },
             "documentation": {
-              "id": 5419,
+              "id": 5407,
               "nodeType": "StructuredDocumentation",
               "src": "495:178:255",
               "text": " @dev Sets a specific beneficiary's maximum contribution.\n @param beneficiary Address to be capped\n @param cap Wei limit for individual contribution"
             },
             "functionSelector": "80ad2cf3",
-            "id": 5435,
+            "id": 5423,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 5426,
+                "id": 5414,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 5425,
+                  "id": 5413,
                   "name": "onlyCapper",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 4243,
@@ -601,17 +601,17 @@
             "nameLocation": "687:6:255",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5424,
+              "id": 5412,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5421,
+                  "id": 5409,
                   "mutability": "mutable",
                   "name": "beneficiary",
                   "nameLocation": "702:11:255",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5435,
+                  "scope": 5423,
                   "src": "694:19:255",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -620,7 +620,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5420,
+                    "id": 5408,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "694:7:255",
@@ -634,12 +634,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 5423,
+                  "id": 5411,
                   "mutability": "mutable",
                   "name": "cap",
                   "nameLocation": "723:3:255",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5435,
+                  "scope": 5423,
                   "src": "715:11:255",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -648,7 +648,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5422,
+                    "id": 5410,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "715:7:255",
@@ -663,12 +663,12 @@
               "src": "693:34:255"
             },
             "returnParameters": {
-              "id": 5427,
+              "id": 5415,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "748:0:255"
             },
-            "scope": 5521,
+            "scope": 5509,
             "src": "678:111:255",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -676,31 +676,31 @@
           },
           {
             "body": {
-              "id": 5447,
+              "id": 5435,
               "nodeType": "Block",
               "src": "1048:42:255",
               "statements": [
                 {
                   "expression": {
                     "baseExpression": {
-                      "id": 5443,
+                      "id": 5431,
                       "name": "_caps",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5418,
+                      "referencedDeclaration": 5406,
                       "src": "1065:5:255",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                         "typeString": "mapping(address => uint256)"
                       }
                     },
-                    "id": 5445,
+                    "id": 5433,
                     "indexExpression": {
-                      "id": 5444,
+                      "id": 5432,
                       "name": "beneficiary",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5438,
+                      "referencedDeclaration": 5426,
                       "src": "1071:11:255",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -718,21 +718,21 @@
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 5442,
-                  "id": 5446,
+                  "functionReturnParameters": 5430,
+                  "id": 5434,
                   "nodeType": "Return",
                   "src": "1058:25:255"
                 }
               ]
             },
             "documentation": {
-              "id": 5436,
+              "id": 5424,
               "nodeType": "StructuredDocumentation",
               "src": "795:181:255",
               "text": " @dev Returns the cap of a specific beneficiary.\n @param beneficiary Address whose cap is to be checked\n @return Current cap for individual beneficiary"
             },
             "functionSelector": "b3aefb75",
-            "id": 5448,
+            "id": 5436,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -740,17 +740,17 @@
             "nameLocation": "990:6:255",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5439,
+              "id": 5427,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5438,
+                  "id": 5426,
                   "mutability": "mutable",
                   "name": "beneficiary",
                   "nameLocation": "1005:11:255",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5448,
+                  "scope": 5436,
                   "src": "997:19:255",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -759,7 +759,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5437,
+                    "id": 5425,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "997:7:255",
@@ -775,17 +775,17 @@
               "src": "996:21:255"
             },
             "returnParameters": {
-              "id": 5442,
+              "id": 5430,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5441,
+                  "id": 5429,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5448,
+                  "scope": 5436,
                   "src": "1039:7:255",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -794,7 +794,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5440,
+                    "id": 5428,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1039:7:255",
@@ -808,7 +808,7 @@
               ],
               "src": "1038:9:255"
             },
-            "scope": 5521,
+            "scope": 5509,
             "src": "981:109:255",
             "stateMutability": "view",
             "virtual": false,
@@ -816,31 +816,31 @@
           },
           {
             "body": {
-              "id": 5460,
+              "id": 5448,
               "nodeType": "Block",
               "src": "1389:51:255",
               "statements": [
                 {
                   "expression": {
                     "baseExpression": {
-                      "id": 5456,
+                      "id": 5444,
                       "name": "_contributions",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5414,
+                      "referencedDeclaration": 5402,
                       "src": "1406:14:255",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                         "typeString": "mapping(address => uint256)"
                       }
                     },
-                    "id": 5458,
+                    "id": 5446,
                     "indexExpression": {
-                      "id": 5457,
+                      "id": 5445,
                       "name": "beneficiary",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 5451,
+                      "referencedDeclaration": 5439,
                       "src": "1421:11:255",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -858,21 +858,21 @@
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 5455,
-                  "id": 5459,
+                  "functionReturnParameters": 5443,
+                  "id": 5447,
                   "nodeType": "Return",
                   "src": "1399:34:255"
                 }
               ]
             },
             "documentation": {
-              "id": 5449,
+              "id": 5437,
               "nodeType": "StructuredDocumentation",
               "src": "1096:184:255",
               "text": " @dev Returns the amount contributed so far by a specific beneficiary.\n @param beneficiary Address of contributor\n @return Beneficiary contribution so far"
             },
             "functionSelector": "21eff7fc",
-            "id": 5461,
+            "id": 5449,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -880,17 +880,17 @@
             "nameLocation": "1294:15:255",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 5452,
+              "id": 5440,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5451,
+                  "id": 5439,
                   "mutability": "mutable",
                   "name": "beneficiary",
                   "nameLocation": "1318:11:255",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5461,
+                  "scope": 5449,
                   "src": "1310:19:255",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -899,7 +899,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5450,
+                    "id": 5438,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1310:7:255",
@@ -915,17 +915,17 @@
               "src": "1309:21:255"
             },
             "returnParameters": {
-              "id": 5455,
+              "id": 5443,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5454,
+                  "id": 5442,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5461,
+                  "scope": 5449,
                   "src": "1376:7:255",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -934,7 +934,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5453,
+                    "id": 5441,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1376:7:255",
@@ -948,7 +948,7 @@
               ],
               "src": "1375:9:255"
             },
-            "scope": 5521,
+            "scope": 5509,
             "src": "1285:155:255",
             "stateMutability": "view",
             "virtual": false,
@@ -956,10 +956,10 @@
           },
           {
             "baseFunctions": [
-              3364
+              3269
             ],
             "body": {
-              "id": 5491,
+              "id": 5479,
               "nodeType": "Block",
               "src": "1771:296:255",
               "statements": [
@@ -967,11 +967,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 5473,
+                        "id": 5461,
                         "name": "beneficiary",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5464,
+                        "referencedDeclaration": 5452,
                         "src": "1808:11:255",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -979,11 +979,11 @@
                         }
                       },
                       {
-                        "id": 5474,
+                        "id": 5462,
                         "name": "weiAmount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5466,
+                        "referencedDeclaration": 5454,
                         "src": "1821:9:255",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1003,32 +1003,32 @@
                         }
                       ],
                       "expression": {
-                        "id": 5470,
+                        "id": 5458,
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 4294967271,
                         "src": "1781:5:255",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_super$_IndividuallyCappedCrowdsale_$5521_$",
+                          "typeIdentifier": "t_type$_t_super$_IndividuallyCappedCrowdsale_$5509_$",
                           "typeString": "type(contract super IndividuallyCappedCrowdsale)"
                         }
                       },
-                      "id": 5472,
+                      "id": 5460,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "_preValidatePurchase",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 3364,
+                      "referencedDeclaration": 3269,
                       "src": "1781:26:255",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256) view"
                       }
                     },
-                    "id": 5475,
+                    "id": 5463,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1043,7 +1043,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5476,
+                  "id": 5464,
                   "nodeType": "ExpressionStatement",
                   "src": "1781:50:255"
                 },
@@ -1055,7 +1055,7 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 5487,
+                        "id": 5475,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1063,11 +1063,11 @@
                         "leftExpression": {
                           "arguments": [
                             {
-                              "id": 5482,
+                              "id": 5470,
                               "name": "weiAmount",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 5466,
+                              "referencedDeclaration": 5454,
                               "src": "1947:9:255",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -1084,24 +1084,24 @@
                             ],
                             "expression": {
                               "baseExpression": {
-                                "id": 5478,
+                                "id": 5466,
                                 "name": "_contributions",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 5414,
+                                "referencedDeclaration": 5402,
                                 "src": "1915:14:255",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                                   "typeString": "mapping(address => uint256)"
                                 }
                               },
-                              "id": 5480,
+                              "id": 5468,
                               "indexExpression": {
-                                "id": 5479,
+                                "id": 5467,
                                 "name": "beneficiary",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 5464,
+                                "referencedDeclaration": 5452,
                                 "src": "1930:11:255",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_address",
@@ -1119,7 +1119,7 @@
                                 "typeString": "uint256"
                               }
                             },
-                            "id": 5481,
+                            "id": 5469,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -1133,7 +1133,7 @@
                               "typeString": "function (uint256,uint256) pure returns (uint256)"
                             }
                           },
-                          "id": 5483,
+                          "id": 5471,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1152,24 +1152,24 @@
                         "operator": "<=",
                         "rightExpression": {
                           "baseExpression": {
-                            "id": 5484,
+                            "id": 5472,
                             "name": "_caps",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 5418,
+                            "referencedDeclaration": 5406,
                             "src": "1961:5:255",
                             "typeDescriptions": {
                               "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                               "typeString": "mapping(address => uint256)"
                             }
                           },
-                          "id": 5486,
+                          "id": 5474,
                           "indexExpression": {
-                            "id": 5485,
+                            "id": 5473,
                             "name": "beneficiary",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 5464,
+                            "referencedDeclaration": 5452,
                             "src": "1967:11:255",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -1195,7 +1195,7 @@
                       },
                       {
                         "hexValue": "496e646976696475616c6c7943617070656443726f776473616c653a2062656e6566696369617279277320636170206578636565646564",
-                        "id": 5488,
+                        "id": 5476,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1221,7 +1221,7 @@
                           "typeString": "literal_string \"IndividuallyCappedCrowdsale: beneficiary's cap exceeded\""
                         }
                       ],
-                      "id": 5477,
+                      "id": 5465,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -1235,7 +1235,7 @@
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 5489,
+                    "id": 5477,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1250,19 +1250,19 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5490,
+                  "id": 5478,
                   "nodeType": "ExpressionStatement",
                   "src": "1894:166:255"
                 }
               ]
             },
             "documentation": {
-              "id": 5462,
+              "id": 5450,
               "nodeType": "StructuredDocumentation",
               "src": "1446:199:255",
               "text": " @dev Extend parent behavior requiring purchase to respect the beneficiary's funding cap.\n @param beneficiary Token purchaser\n @param weiAmount Amount of wei contributed"
             },
-            "id": 5492,
+            "id": 5480,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -1270,23 +1270,23 @@
             "nameLocation": "1659:20:255",
             "nodeType": "FunctionDefinition",
             "overrides": {
-              "id": 5468,
+              "id": 5456,
               "nodeType": "OverrideSpecifier",
               "overrides": [],
               "src": "1758:8:255"
             },
             "parameters": {
-              "id": 5467,
+              "id": 5455,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5464,
+                  "id": 5452,
                   "mutability": "mutable",
                   "name": "beneficiary",
                   "nameLocation": "1688:11:255",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5492,
+                  "scope": 5480,
                   "src": "1680:19:255",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1295,7 +1295,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5463,
+                    "id": 5451,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1680:7:255",
@@ -1309,12 +1309,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 5466,
+                  "id": 5454,
                   "mutability": "mutable",
                   "name": "weiAmount",
                   "nameLocation": "1709:9:255",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5492,
+                  "scope": 5480,
                   "src": "1701:17:255",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1323,7 +1323,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5465,
+                    "id": 5453,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1701:7:255",
@@ -1338,12 +1338,12 @@
               "src": "1679:40:255"
             },
             "returnParameters": {
-              "id": 5469,
+              "id": 5457,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1771:0:255"
             },
-            "scope": 5521,
+            "scope": 5509,
             "src": "1650:417:255",
             "stateMutability": "view",
             "virtual": false,
@@ -1351,10 +1351,10 @@
           },
           {
             "baseFunctions": [
-              3412
+              3317
             ],
             "body": {
-              "id": 5519,
+              "id": 5507,
               "nodeType": "Block",
               "src": "2363:173:255",
               "statements": [
@@ -1362,11 +1362,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 5504,
+                        "id": 5492,
                         "name": "beneficiary",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5495,
+                        "referencedDeclaration": 5483,
                         "src": "2402:11:255",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1374,11 +1374,11 @@
                         }
                       },
                       {
-                        "id": 5505,
+                        "id": 5493,
                         "name": "weiAmount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5497,
+                        "referencedDeclaration": 5485,
                         "src": "2415:9:255",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -1398,32 +1398,32 @@
                         }
                       ],
                       "expression": {
-                        "id": 5501,
+                        "id": 5489,
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 4294967271,
                         "src": "2373:5:255",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_super$_IndividuallyCappedCrowdsale_$5521_$",
+                          "typeIdentifier": "t_type$_t_super$_IndividuallyCappedCrowdsale_$5509_$",
                           "typeString": "type(contract super IndividuallyCappedCrowdsale)"
                         }
                       },
-                      "id": 5503,
+                      "id": 5491,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "_updatePurchasingState",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 3412,
+                      "referencedDeclaration": 3317,
                       "src": "2373:28:255",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256)"
                       }
                     },
-                    "id": 5506,
+                    "id": 5494,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1438,37 +1438,37 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5507,
+                  "id": 5495,
                   "nodeType": "ExpressionStatement",
                   "src": "2373:52:255"
                 },
                 {
                   "expression": {
-                    "id": 5517,
+                    "id": 5505,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "baseExpression": {
-                        "id": 5508,
+                        "id": 5496,
                         "name": "_contributions",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5414,
+                        "referencedDeclaration": 5402,
                         "src": "2435:14:255",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 5510,
+                      "id": 5498,
                       "indexExpression": {
-                        "id": 5509,
+                        "id": 5497,
                         "name": "beneficiary",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5495,
+                        "referencedDeclaration": 5483,
                         "src": "2450:11:255",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1491,11 +1491,11 @@
                     "rightHandSide": {
                       "arguments": [
                         {
-                          "id": 5515,
+                          "id": 5503,
                           "name": "weiAmount",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 5497,
+                          "referencedDeclaration": 5485,
                           "src": "2510:9:255",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint256",
@@ -1512,24 +1512,24 @@
                         ],
                         "expression": {
                           "baseExpression": {
-                            "id": 5511,
+                            "id": 5499,
                             "name": "_contributions",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 5414,
+                            "referencedDeclaration": 5402,
                             "src": "2465:14:255",
                             "typeDescriptions": {
                               "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                               "typeString": "mapping(address => uint256)"
                             }
                           },
-                          "id": 5513,
+                          "id": 5501,
                           "indexExpression": {
-                            "id": 5512,
+                            "id": 5500,
                             "name": "beneficiary",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 5495,
+                            "referencedDeclaration": 5483,
                             "src": "2480:11:255",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
@@ -1547,7 +1547,7 @@
                             "typeString": "uint256"
                           }
                         },
-                        "id": 5514,
+                        "id": 5502,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1561,7 +1561,7 @@
                           "typeString": "function (uint256,uint256) pure returns (uint256)"
                         }
                       },
-                      "id": 5516,
+                      "id": 5504,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1582,19 +1582,19 @@
                       "typeString": "uint256"
                     }
                   },
-                  "id": 5518,
+                  "id": 5506,
                   "nodeType": "ExpressionStatement",
                   "src": "2435:94:255"
                 }
               ]
             },
             "documentation": {
-              "id": 5493,
+              "id": 5481,
               "nodeType": "StructuredDocumentation",
               "src": "2073:175:255",
               "text": " @dev Extend parent behavior to update beneficiary contributions.\n @param beneficiary Token purchaser\n @param weiAmount Amount of wei contributed"
             },
-            "id": 5520,
+            "id": 5508,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -1602,23 +1602,23 @@
             "nameLocation": "2262:22:255",
             "nodeType": "FunctionDefinition",
             "overrides": {
-              "id": 5499,
+              "id": 5487,
               "nodeType": "OverrideSpecifier",
               "overrides": [],
               "src": "2350:8:255"
             },
             "parameters": {
-              "id": 5498,
+              "id": 5486,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5495,
+                  "id": 5483,
                   "mutability": "mutable",
                   "name": "beneficiary",
                   "nameLocation": "2293:11:255",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5520,
+                  "scope": 5508,
                   "src": "2285:19:255",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1627,7 +1627,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5494,
+                    "id": 5482,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2285:7:255",
@@ -1641,12 +1641,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 5497,
+                  "id": 5485,
                   "mutability": "mutable",
                   "name": "weiAmount",
                   "nameLocation": "2314:9:255",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5520,
+                  "scope": 5508,
                   "src": "2306:17:255",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1655,7 +1655,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5496,
+                    "id": 5484,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2306:7:255",
@@ -1670,19 +1670,19 @@
               "src": "2284:40:255"
             },
             "returnParameters": {
-              "id": 5500,
+              "id": 5488,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2363:0:255"
             },
-            "scope": 5521,
+            "scope": 5509,
             "src": "2253:283:255",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "internal"
           }
         ],
-        "scope": 5522,
+        "scope": 5510,
         "src": "281:2257:255",
         "usedErrors": []
       }
@@ -1695,7 +1695,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.7",
-  "updatedAt": "2023-02-06T21:49:46.664Z",
+  "updatedAt": "2023-02-09T14:19:22.030Z",
   "devdoc": {
     "details": "Crowdsale with per-beneficiary caps.",
     "kind": "dev",

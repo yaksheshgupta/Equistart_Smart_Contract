@@ -265,7 +265,7 @@
         1412
       ],
       "Crowdsale": [
-        3439
+        3344
       ],
       "ERC20": [
         640
@@ -304,7 +304,7 @@
         5276
       ],
       "TimedCrowdsale": [
-        5709
+        5697
       ]
     },
     "id": 3781,
@@ -414,8 +414,8 @@
         "linearizedBaseContracts": [
           3780,
           3503,
-          5709,
-          3439,
+          5697,
+          3344,
           53,
           1412
         ],
@@ -651,7 +651,7 @@
                           "name": "wallet",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3154,
+                          "referencedDeclaration": 3059,
                           "src": "1417:6:237",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address_payable",
@@ -1275,7 +1275,7 @@
                         "name": "weiRaised",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3278,
+                        "referencedDeclaration": 3183,
                         "src": "2187:9:237",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
@@ -1683,7 +1683,7 @@
           },
           {
             "baseFunctions": [
-              3438
+              3343
             ],
             "body": {
               "id": 3778,
@@ -1879,7 +1879,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.7",
-  "updatedAt": "2023-02-06T21:49:46.655Z",
+  "updatedAt": "2023-02-09T14:19:21.992Z",
   "devdoc": {
     "details": "Extension of `FinalizableCrowdsale` contract that adds a funding goal, and the possibility of users getting a refund if goal is not met. Deprecated, use `RefundablePostDeliveryCrowdsale` instead. Note that if you allow tokens to be traded before the goal is met, then an attack is possible in which the attacker purchases tokens from the crowdsale and when they sees that the goal is unlikely to be met, they sell their tokens (possibly at a discount). The attacker will be refunded when the crowdsale is finalized, and the users that purchased from them will be left with worthless tokens.",
     "kind": "dev",

@@ -23,7 +23,7 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
  * the methods to add functionality. Consider using 'super' where appropiate to concatenate
  * behavior.
  */
-contract Crowdsale {
+contract Crowdsale_V0 {
   using SafeMath for uint256;
 
   // The token being sold

@@ -297,7 +297,7 @@
         1412
       ],
       "Crowdsale": [
-        3439
+        3344
       ],
       "ERC20": [
         640
@@ -342,7 +342,7 @@
         5276
       ],
       "TimedCrowdsale": [
-        5709
+        5697
       ],
       "__unstable__TokenVault": [
         3640
@@ -434,8 +434,8 @@
           3780,
           3503,
           3616,
-          5709,
-          3439,
+          5697,
+          3344,
           53,
           1412
         ],
@@ -445,7 +445,7 @@
         "nodes": [
           {
             "baseFunctions": [
-              3438,
+              3343,
               3779
             ],
             "body": {
@@ -520,7 +520,7 @@
                   "id": 3791,
                   "name": "Crowdsale",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 3439,
+                  "referencedDeclaration": 3344,
                   "src": "520:9:238"
                 },
                 {
@@ -553,7 +553,7 @@
           },
           {
             "baseFunctions": [
-              3403,
+              3308,
               3615
             ],
             "body": {
@@ -619,7 +619,7 @@
                       "lValueRequested": false,
                       "memberName": "_preValidatePurchase",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 5678,
+                      "referencedDeclaration": 5666,
                       "src": "759:26:238",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$_t_address_$_t_uint256_$returns$__$",
@@ -662,7 +662,7 @@
                   "id": 3807,
                   "name": "Crowdsale",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 3439,
+                  "referencedDeclaration": 3344,
                   "src": "711:9:238"
                 },
                 {
@@ -1091,7 +1091,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.7",
-  "updatedAt": "2023-02-06T21:49:46.656Z",
+  "updatedAt": "2023-02-09T14:19:21.996Z",
   "devdoc": {
     "details": "Extension of RefundableCrowdsale contract that only delivers the tokens once the crowdsale has closed and the goal met, preventing refunds to be issued to token holders.",
     "kind": "dev",

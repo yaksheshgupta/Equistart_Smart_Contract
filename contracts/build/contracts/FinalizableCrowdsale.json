@@ -223,7 +223,7 @@
         1412
       ],
       "Crowdsale": [
-        3439
+        3344
       ],
       "ERC20": [
         640
@@ -250,7 +250,7 @@
         2589
       ],
       "TimedCrowdsale": [
-        5709
+        5697
       ]
     },
     "id": 3504,
@@ -287,7 +287,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 3504,
-        "sourceUnit": 5710,
+        "sourceUnit": 5698,
         "src": "115:42:235",
         "symbolAliases": [],
         "unitAlias": ""
@@ -300,7 +300,7 @@
               "id": 3445,
               "name": "TimedCrowdsale",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 5709,
+              "referencedDeclaration": 5697,
               "src": "360:14:235"
             },
             "id": 3446,
@@ -321,8 +321,8 @@
         "id": 3503,
         "linearizedBaseContracts": [
           3503,
-          5709,
-          3439,
+          5697,
+          3344,
           53,
           1412
         ],
@@ -669,7 +669,7 @@
                           "name": "hasClosed",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 5659,
+                          "referencedDeclaration": 5647,
                           "src": "974:9:235",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
@@ -955,7 +955,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.7",
-  "updatedAt": "2023-02-06T21:49:46.650Z",
+  "updatedAt": "2023-02-09T14:19:21.981Z",
   "devdoc": {
     "details": "Extension of TimedCrowdsale with a one-off finalization action, where one can do extra work after finishing.",
     "kind": "dev",

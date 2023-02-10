@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-import "./crowdsale/validation/TimedCrowdsale.sol";
-import "./crowdsale/validation/CappedCrowdsale.sol";
-import "./crowdsale/Crowdsale.sol";
+import "../validation/TimedCrowdsale.sol";
+import "../validation/CappedCrowdsale.sol";
+import "../Crowdsale.sol";
 
-contract MyCrowdSale is Crowdsale, CappedCrowdsale, TimedCrowdsale {
+contract MYCS_Capped_Timed is Crowdsale, CappedCrowdsale, TimedCrowdsale {
     constructor(
         uint256 cap,
         uint256 _openingTime,
@@ -18,6 +18,19 @@ contract MyCrowdSale is Crowdsale, CappedCrowdsale, TimedCrowdsale {
         Crowdsale(_Rate, _wallet, _token)
     {}
 
+    // LOWER FUNCTION JUST FOR CHECKING ---- NO IMPACT ON MAIN CODE
+    function timeStamp() public view returns (uint256) {
+        return block.timestamp;
+    }
+
+    function timeDiffrenceToOpen() public view returns (uint256) {
+        return block.timestamp - openingTime();
+    }
+
+    function timeDiffrenceToClose() public view returns (uint256) {
+        return closingTime() - block.timestamp;
+    }
+
     function _preValidatePurchase(address beneficiary, uint256 weiAmount)
         internal
         view
@@ -25,16 +38,5 @@ contract MyCrowdSale is Crowdsale, CappedCrowdsale, TimedCrowdsale {
         onlyWhileOpen
     {
         super._preValidatePurchase(beneficiary, weiAmount);
-    }
-
-    // LOWER FUNCTION JUST FOR CHECKING ---- NO IMPACT ON MAIN CODE
-    function timeStamp()public view returns (uint) {
-        return block.timestamp;
-    }
-    function timeDiffrenceToOpen()public view returns (uint) {
-        return block.timestamp-openingTime();
-    }
-    function timeDiffrenceToClose()public view returns (uint) {
-        return closingTime()-block.timestamp;
     }
 }

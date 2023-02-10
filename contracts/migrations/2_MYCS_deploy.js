@@ -1,10 +1,11 @@
-const MYCROWDSALE = artifacts.require("MyCrowdSale");
+const MYCROWDSALE = artifacts.require("MYCS_Capped_Timed");
 const ERC20Token = artifacts.require("ERC20Token");
 const CAP_SIZE = 10;
 const TOKEN_NAME = "Equistart";
 const TOKEN_SYMBOL = "EQST";
 const TOKEN_SUPPLY=1000;
-const WALLET = "0xf5cC334A7FC8Ece6fe31C686A362db544cf38D2B";
+const WALLET = "0xB993f6F441ab0bD3B79162bc653400dabb4532eb";
+
 // 5mins=300 sec
 // 1mins=60 sec
 const OPENING_TIME_ADD = 10;
