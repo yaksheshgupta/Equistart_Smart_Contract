@@ -54,6 +54,7 @@ abstract contract IndividuallyCappedCrowdsale is Crowdsale, CapperRole {
     function _preValidatePurchase(address beneficiary, uint256 weiAmount)
         internal
         view
+        virtual
         override
     {
         super._preValidatePurchase(beneficiary, weiAmount);
@@ -71,6 +72,7 @@ abstract contract IndividuallyCappedCrowdsale is Crowdsale, CapperRole {
      */
     function _updatePurchasingState(address beneficiary, uint256 weiAmount)
         internal
+        virtual
         override
     {
         super._updatePurchasingState(beneficiary, weiAmount);

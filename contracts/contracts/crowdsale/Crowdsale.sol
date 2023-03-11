@@ -81,7 +81,7 @@ contract Crowdsale is Context, ReentrancyGuard {
     }
 
     receive() external payable {
-        buyTokens(msg.sender);
+        buyTokens(_msgSender());
     }
 
     /**

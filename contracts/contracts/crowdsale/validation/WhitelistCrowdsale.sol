@@ -20,6 +20,7 @@ abstract contract WhitelistCrowdsale is WhitelistedRole, Crowdsale {
     function _preValidatePurchase(address _beneficiary, uint256 _weiAmount)
         internal
         view
+        virtual
         override
     {
         require(

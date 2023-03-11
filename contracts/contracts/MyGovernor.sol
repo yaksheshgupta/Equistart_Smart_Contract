@@ -17,6 +17,9 @@ contract MyGovernor is
     GovernorTimelockControl,
     Ownable
 {
+    uint256 private DEFAULT_proposalThreshold = 1e18;
+    uint256 private DEFAULT_votingPeriod = 4;
+
     constructor(IVotes _token, TimelockController _timelock)
         Governor("MyGovernor")
         GovernorVotes(_token)
@@ -24,16 +27,23 @@ contract MyGovernor is
         GovernorTimelockControl(_timelock)
     {}
 
-    uint256 private DEFAULT_proposalThreshold = 1e18;
-    uint256 private DEFAULT_votingPeriod = 4;
+    receive() external payable override{}
+    function pay_transfer(address payable _sender, uint256 _amount)
+        public
+        returns (bool)
+    {
+        require(_msgSender()==address(this),"not governor");
+        _sender.transfer(_amount);
+        return true;
+    }
+
+// --------------
+
+
 
     function votingDelay() public pure override returns (uint256) {
         return 1; // 1 block
     }
-
-    // function proposalThreshold() public pure override returns (uint256) {
-    //     return 100e18;
-    // }
 
     // TODO 100 eth is not required for our project
     // user token balalnce should be equal or greater than proposalThreshold

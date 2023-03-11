@@ -64,7 +64,7 @@ abstract contract RefundableCrowdsale is Context, FinalizableCrowdsale {
     /**
      * @dev Escrow finalization task, called when finalize() is called.
      */
-    function _finalization() internal override {
+    function _finalization() internal virtual override {
         if (goalReached()) {
             _escrow.close();
             _escrow.beneficiaryWithdraw();

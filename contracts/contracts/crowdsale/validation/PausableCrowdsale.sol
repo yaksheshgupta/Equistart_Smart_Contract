@@ -24,6 +24,6 @@ abstract contract PausableCrowdsale is Crowdsale, Pausable {
         override
         whenNotPaused
     {
-        return super._preValidatePurchase(_beneficiary, _weiAmount);
+        super._preValidatePurchase(_beneficiary, _weiAmount);
     }
 }

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.4;
 
-import "./Crowdsale.sol";
+import "./Crowdsale/CrowdSale.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract CrowdsaleFactory is Ownable{
@@ -31,7 +31,7 @@ contract CrowdsaleFactory is Ownable{
         currentCrowdsale.token = _token;
         currentCrowdsale.rate = _rate;
         currentCrowdsale.beneficiaryAddr = _wallet;
-        currentCrowdsale.crowdsaleContractAddr = address(new Crowdsale(_rate, _wallet, _token));
+        currentCrowdsale.crowdsaleContractAddr = address(new Crowdsale(_rate, payable(_wallet), _token));
         emit newCrowdSaleCreatedAt(currentCrowdsale.crowdsaleContractAddr);
 
     }

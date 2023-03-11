@@ -19,6 +19,7 @@ abstract contract MintedCrowdsale is Crowdsale {
      */
     function _deliverTokens(address beneficiary, uint256 tokenAmount)
         internal
+        virtual
         override
     {
         // Potentially dangerous assumption about the type of the token.

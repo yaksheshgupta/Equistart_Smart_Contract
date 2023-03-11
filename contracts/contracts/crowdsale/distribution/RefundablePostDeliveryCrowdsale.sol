@@ -15,19 +15,23 @@ abstract contract RefundablePostDeliveryCrowdsale is
     PostDeliveryCrowdsale,
     RefundableCrowdsale
 {
-    function _forwardFunds() internal override(Crowdsale, RefundableCrowdsale) {
+    function _forwardFunds()
+        internal
+        virtual
+        override(Crowdsale, RefundableCrowdsale)
+    {
         super._forwardFunds();
     }
 
     function _processPurchase(address beneficiary, uint256 tokenAmount)
         internal
-        view
+        virtual
         override(Crowdsale, PostDeliveryCrowdsale)
     {
-        super._preValidatePurchase(beneficiary, tokenAmount);
+        super._processPurchase(beneficiary, tokenAmount);
     }
 
-    function withdrawTokens(address beneficiary) public override {
+    function withdrawTokens(address beneficiary) public virtual override {
         require(finalized(), "RefundablePostDeliveryCrowdsale: not finalized");
         require(
             goalReached(),
