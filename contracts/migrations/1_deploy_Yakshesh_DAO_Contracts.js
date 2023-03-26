@@ -10,15 +10,15 @@ const owner="0xf5cC334A7FC8Ece6fe31C686A362db544cf38D2B"
 
 
 module.exports =  (deployer)=> {
-  deployer.deploy(tokenFactory);
-  deployer.deploy(ERC20Token,"Yakshesh","YAKSH",100,owner).then(()=>{
-    console.log("ERC 20 TOken Contract address:", ERC20Token.address);
-    return deployer.deploy(crowdsale,1,owner,ERC20Token.address)
-  })
-  deployer.deploy(crowdsaleFactory);
-  deployer.deploy(timelockController,5,proposers,executors).then(()=>{
-     return deployer.deploy(mygo,ERC20Token.address,timelockController.address);
-   })
+  // deployer.deploy(tokenFactory);
+  // deployer.deploy(ERC20Token,"Yakshesh","YAKSH",100,owner).then(()=>{
+  //   console.log("ERC 20 TOken Contract address:", ERC20Token.address);
+  //   return deployer.deploy(crowdsale,1,owner,ERC20Token.address)
+  // })
+  // deployer.deploy(crowdsaleFactory);
+  // deployer.deploy(timelockController,5,proposers,executors).then(()=>{
+  //    return deployer.deploy(mygo,ERC20Token.address,timelockController.address);
+  //  })
 };
 
 // NO NEED FOR THIS AS DEVELOPING CROWDSALE

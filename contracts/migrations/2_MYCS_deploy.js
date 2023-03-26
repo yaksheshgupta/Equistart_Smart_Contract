@@ -1,5 +1,6 @@
 // const MYCROWDSALE = artifacts.require("MYCS_Capped_Timed");
-const MYCROWDSALE = artifacts.require("MYCS_POSTDEV_WHITE");
+// const MYCROWDSALE = artifacts.require("MYCS_POSTDEV_WHITE");
+const MYCROWDSALE = artifacts.require("MYCS_ALLOWANCE");
 const ERC20Token = artifacts.require("ERC20Token");
 const CAP_SIZE = 10;
 const GOAL=100;
@@ -20,6 +21,9 @@ module.exports = (deployer) => {
     // 👆 MYCS_Capped_Timed
     // return deployer.deploy(MYCROWDSALE, GOAL, Math.floor(Date.now() / 1000) + OPENING_TIME_ADD, Math.floor(Date.now() / 1000) + CLOSING_TIME_ADD, RATE, WALLET, ERC20Token.address)
     // 👆 MYCS_POSTDEV_WHITE
+    return deployer.deploy(MYCROWDSALE,WALLET, RATE, WALLET, ERC20Token.address)
+    // 👆 MYCS_ALLOWANCE
+
   }).then(()=>{
     console.log("MyCrowdSale Contract address:", MYCROWDSALE.address);
   })

@@ -1,4 +1,4 @@
-// import { BN, expectRevert, time } from '@openzeppelin/test-helpers';
+import { BN, expectRevert, time } from '@openzeppelin/test-helpers';
 const {time} = require('@openzeppelin/test-helpers');
 const { web3 } = require('@openzeppelin/test-helpers/src/setup');
 const {assert} = require('chai');
