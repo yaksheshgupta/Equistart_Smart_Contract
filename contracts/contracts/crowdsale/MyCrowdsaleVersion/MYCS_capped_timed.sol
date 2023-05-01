@@ -18,19 +18,6 @@ contract MYCS_Capped_Timed is Crowdsale, CappedCrowdsale, TimedCrowdsale {
         Crowdsale(_Rate, _wallet, _token)
     {}
 
-    // LOWER FUNCTION JUST FOR CHECKING ---- NO IMPACT ON MAIN CODE
-    function timeStamp() public view returns (uint256) {
-        return block.timestamp;
-    }
-
-    function timeDiffrenceToOpen() public view returns (uint256) {
-        return block.timestamp - openingTime();
-    }
-
-    function timeDiffrenceToClose() public view returns (uint256) {
-        return closingTime() - block.timestamp;
-    }
-
     function _preValidatePurchase(address beneficiary, uint256 weiAmount)
         internal
         view
@@ -39,4 +26,5 @@ contract MYCS_Capped_Timed is Crowdsale, CappedCrowdsale, TimedCrowdsale {
     {
         super._preValidatePurchase(beneficiary, weiAmount);
     }
+
 }

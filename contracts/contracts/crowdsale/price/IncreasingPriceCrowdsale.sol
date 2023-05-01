@@ -31,7 +31,8 @@ abstract contract IncreasingPriceCrowdsale is TimedCrowdsale {
      * The base rate function is overridden to revert, since this crowdsale doesn't use it, and
      * all calls to it are a mistake.
      */
-    function _rate_() public pure returns (uint256) {
+    function rate_() public pure returns (uint256) {
+        // Name changes to rate_ from rate due to name conflicts from main CS file
         revert("IncreasingPriceCrowdsale: rate() called");
     }
 
@@ -74,6 +75,7 @@ abstract contract IncreasingPriceCrowdsale is TimedCrowdsale {
     function _getTokenAmount(uint256 weiAmount)
         internal
         view
+        virtual
         override
         returns (uint256)
     {

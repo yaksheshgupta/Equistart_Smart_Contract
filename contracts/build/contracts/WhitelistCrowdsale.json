@@ -249,7 +249,7 @@
       "type": "receive"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.13+commit.abaa5c0e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"purchaser\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokensPurchased\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"WhitelistAdminAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"WhitelistAdminRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"WhitelistedAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"WhitelistedRemoved\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"_rate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addWhitelistAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addWhitelisted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"}],\"name\":\"buyTokens\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isWhitelistAdmin\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isWhitelisted\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeWhitelisted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceWhitelistAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceWhitelisted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"seeToken\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"seeWallet\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"weiRaised\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"details\":\"Crowdsale in which only whitelisted users can contribute.\",\"kind\":\"dev\",\"methods\":{\"_rate()\":{\"returns\":{\"_0\":\"the number of token units a buyer gets per wei.\"}},\"buyTokens(address)\":{\"details\":\"low level token purchase ***DO NOT OVERRIDE*** This function has a non-reentrancy guard, so it shouldn't be called by another `nonReentrant` function.\",\"params\":{\"beneficiary\":\"Recipient of the token purchase\"}},\"seeToken()\":{\"returns\":{\"_0\":\"the token being sold.\"}},\"seeWallet()\":{\"returns\":{\"_0\":\"the address where funds are collected.\"}},\"weiRaised()\":{\"returns\":{\"_0\":\"the amount of wei raised.\"}}},\"title\":\"WhitelistCrowdsale\",\"version\":1},\"userdoc\":{\"events\":{\"TokensPurchased(address,address,uint256,uint256)\":{\"notice\":\"Event for token purchase logging\"}},\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/crowdsale/validation/WhitelistCrowdsale.sol\":\"WhitelistCrowdsale\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/security/ReentrancyGuard.sol\":{\"keccak256\":\"0x190dd6f8d592b7e4e930feb7f4313aeb8e1c4ad3154c27ce1cf6a512fc30d8cc\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4ce8dfb62d0c4fa260d6eec8f1cd47f5f2a044e11bde5b31d18072fa6e7d9010\",\"dweb:/ipfs/QmTyFztU3tLEcEDnqqiaW4UJetqsU77LXc6pjc9oTXCK5u\"]},\"@openzeppelin/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0x4ffc0547c02ad22925310c585c0f166f8759e2648a09e9b489100c42f15dd98d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://15f52f51413a9de1ff191e2f6367c62178e1df7806d7880fe857a98b0b66253d\",\"dweb:/ipfs/QmaQG1fwfgUt5E9nu2cccFiV47B2V78MM1tCy1qB7n4MsH\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5a7d5b1ef5d8d5889ad2ed89d8619c09383b80b72ab226e0fe7bde1636481e34\",\"dweb:/ipfs/QmebXWgtEfumQGBdVeM6c71McLixYXQP5Bk6kKXuoY4Bmr\"]},\"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol\":{\"keccak256\":\"0x8de418a5503946cabe331f35fe242d3201a73f67f77aaeb7110acb1f30423aca\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5a376d3dda2cb70536c0a45c208b29b34ac560c4cb4f513a42079f96ba47d2dd\",\"dweb:/ipfs/QmZQg6gn1sUpM8wHzwNvSnihumUCAhxD119MpXeKp8B9s8\"]},\"@openzeppelin/contracts/token/ERC20/extensions/draft-IERC20Permit.sol\":{\"keccak256\":\"0xf41ca991f30855bf80ffd11e9347856a517b977f0a6c2d52e6421a99b7840329\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b2717fd2bdac99daa960a6de500754ea1b932093c946388c381da48658234b95\",\"dweb:/ipfs/QmP6QVMn6UeA3ByahyJbYQr5M6coHKBKsf3ySZSfbyA8R7\"]},\"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol\":{\"keccak256\":\"0x9b72f93be69ca894d8492c244259615c4a742afc8d63720dbc8bb81087d9b238\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f5a7b96e511be78d5cdf635c784e6ab8cdd38625bb8cafb8a80914a1c89cf0f6\",\"dweb:/ipfs/QmVzTCwJxQAkjRQHboT5QrvsVJGWQHgfEjeTbvyxoKBrds\"]},\"@openzeppelin/contracts/utils/Address.sol\":{\"keccak256\":\"0xf96f969e24029d43d0df89e59d365f277021dac62b48e1c1e3ebe0acdd7f1ca1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ec772b45a624be516f1c81970caa8a2e144301e9d0921cbc1a2789fef39a1269\",\"dweb:/ipfs/QmNyjwxCrGhQMyzLD93oUobJXVe9ceJvRvfXwbEtuxPiEj\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92\",\"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3\"]},\"@openzeppelin/contracts/utils/math/SafeMath.sol\":{\"keccak256\":\"0x0f633a0223d9a1dcccfcf38a64c9de0874dfcbfac0c6941ccf074d63a2ce0e1e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://864a40efcffdf408044c332a5aa38ec5618ed7b4eecb8f65faf45671bd6cdc65\",\"dweb:/ipfs/QmQJquTMtc6fgm5JQzGdsGpA2fqBe3MHWEdt2qzaLySMdN\"]},\"project:/contracts/crowdsale/Crowdsale.sol\":{\"keccak256\":\"0xe06117cd283f6b1f42e069a0e17edf18428549f95432ecacaed0d9767356ebac\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6bd4bd1236e9e60ac5deb140c8fcac957aa7270899b79359209d69f5086fe254\",\"dweb:/ipfs/QmUBgSwTCBm3VuymX4ZyRvxk4c5GMP1oD9s7M2HDXCTVkh\"]},\"project:/contracts/crowdsale/utils/access/Roles.sol\":{\"keccak256\":\"0x368268f49151ac23c591ca923eab218f9e0373e42a24239dab2571d74715c72d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0410de25f1d46106f29d67e65387880ecaed2e186b1f6198bdbbbf8f075b38b0\",\"dweb:/ipfs/QmVyh7EDQxkvR8PE1ExU1WYCm4CWZwr6zrR7u2uFVhTBP5\"]},\"project:/contracts/crowdsale/utils/access/roles/WhitelistAdminRole.sol\":{\"keccak256\":\"0x128b499f2b8a3466721b947a9def1d04f50aad27ac3f9ca219852ae0b24a7df7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://538d14776d1206a11c65486fe37b7452894c47db2ac6d386a835d32d42c6fb06\",\"dweb:/ipfs/QmSe32yTbsPGqPeu6PM5Vpwb3wRfQP27YGWLdTBMxouCAw\"]},\"project:/contracts/crowdsale/utils/access/roles/WhitelistedRole.sol\":{\"keccak256\":\"0x464c4d15f99d296aac1fd1ea8d17db8b764d6b6f87a21edf6a409f1adb7aacc5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a69b7bd73fe69d2fc97cf036401e03f814612cf1aaee3d421cc25a207149b1d7\",\"dweb:/ipfs/QmaaEq6P2u1XyJKCyQWYmxEgBBobYwRbPJU1LHfuQZHYD3\"]},\"project:/contracts/crowdsale/validation/WhitelistCrowdsale.sol\":{\"keccak256\":\"0xb73d6a01aa1ce3ed5f98bb86c4752fc6b75b9382c5f87005972acf3bc8d80630\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7e90ec2c39633a9c6b262dd06e7ad44b1f738cc06d6341dcfcaba095b6899de9\",\"dweb:/ipfs/QmNcUWKNTzRLfgFqafy9kD65dUiJP8BgdDNuwGBSNAnAjq\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.14+commit.80d49f37\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"purchaser\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TokensPurchased\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"WhitelistAdminAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"WhitelistAdminRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"WhitelistedAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"WhitelistedRemoved\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[],\"name\":\"_rate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addWhitelistAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addWhitelisted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"}],\"name\":\"buyTokens\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isWhitelistAdmin\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isWhitelisted\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"removeWhitelisted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceWhitelistAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceWhitelisted\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"seeToken\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"seeWallet\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"weiRaised\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"details\":\"Crowdsale in which only whitelisted users can contribute.\",\"kind\":\"dev\",\"methods\":{\"_rate()\":{\"returns\":{\"_0\":\"the number of token units a buyer gets per wei.\"}},\"buyTokens(address)\":{\"details\":\"low level token purchase ***DO NOT OVERRIDE*** This function has a non-reentrancy guard, so it shouldn't be called by another `nonReentrant` function.\",\"params\":{\"beneficiary\":\"Recipient of the token purchase\"}},\"seeToken()\":{\"returns\":{\"_0\":\"the token being sold.\"}},\"seeWallet()\":{\"returns\":{\"_0\":\"the address where funds are collected.\"}},\"weiRaised()\":{\"returns\":{\"_0\":\"the amount of wei raised.\"}}},\"title\":\"WhitelistCrowdsale\",\"version\":1},\"userdoc\":{\"events\":{\"TokensPurchased(address,address,uint256,uint256)\":{\"notice\":\"Event for token purchase logging\"}},\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/crowdsale/validation/WhitelistCrowdsale.sol\":\"WhitelistCrowdsale\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/security/ReentrancyGuard.sol\":{\"keccak256\":\"0x190dd6f8d592b7e4e930feb7f4313aeb8e1c4ad3154c27ce1cf6a512fc30d8cc\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4ce8dfb62d0c4fa260d6eec8f1cd47f5f2a044e11bde5b31d18072fa6e7d9010\",\"dweb:/ipfs/QmTyFztU3tLEcEDnqqiaW4UJetqsU77LXc6pjc9oTXCK5u\"]},\"@openzeppelin/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0x4ffc0547c02ad22925310c585c0f166f8759e2648a09e9b489100c42f15dd98d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://15f52f51413a9de1ff191e2f6367c62178e1df7806d7880fe857a98b0b66253d\",\"dweb:/ipfs/QmaQG1fwfgUt5E9nu2cccFiV47B2V78MM1tCy1qB7n4MsH\"]},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5a7d5b1ef5d8d5889ad2ed89d8619c09383b80b72ab226e0fe7bde1636481e34\",\"dweb:/ipfs/QmebXWgtEfumQGBdVeM6c71McLixYXQP5Bk6kKXuoY4Bmr\"]},\"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol\":{\"keccak256\":\"0x8de418a5503946cabe331f35fe242d3201a73f67f77aaeb7110acb1f30423aca\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5a376d3dda2cb70536c0a45c208b29b34ac560c4cb4f513a42079f96ba47d2dd\",\"dweb:/ipfs/QmZQg6gn1sUpM8wHzwNvSnihumUCAhxD119MpXeKp8B9s8\"]},\"@openzeppelin/contracts/token/ERC20/extensions/draft-IERC20Permit.sol\":{\"keccak256\":\"0xf41ca991f30855bf80ffd11e9347856a517b977f0a6c2d52e6421a99b7840329\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b2717fd2bdac99daa960a6de500754ea1b932093c946388c381da48658234b95\",\"dweb:/ipfs/QmP6QVMn6UeA3ByahyJbYQr5M6coHKBKsf3ySZSfbyA8R7\"]},\"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol\":{\"keccak256\":\"0x9b72f93be69ca894d8492c244259615c4a742afc8d63720dbc8bb81087d9b238\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f5a7b96e511be78d5cdf635c784e6ab8cdd38625bb8cafb8a80914a1c89cf0f6\",\"dweb:/ipfs/QmVzTCwJxQAkjRQHboT5QrvsVJGWQHgfEjeTbvyxoKBrds\"]},\"@openzeppelin/contracts/utils/Address.sol\":{\"keccak256\":\"0xf96f969e24029d43d0df89e59d365f277021dac62b48e1c1e3ebe0acdd7f1ca1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ec772b45a624be516f1c81970caa8a2e144301e9d0921cbc1a2789fef39a1269\",\"dweb:/ipfs/QmNyjwxCrGhQMyzLD93oUobJXVe9ceJvRvfXwbEtuxPiEj\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92\",\"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3\"]},\"@openzeppelin/contracts/utils/math/SafeMath.sol\":{\"keccak256\":\"0x0f633a0223d9a1dcccfcf38a64c9de0874dfcbfac0c6941ccf074d63a2ce0e1e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://864a40efcffdf408044c332a5aa38ec5618ed7b4eecb8f65faf45671bd6cdc65\",\"dweb:/ipfs/QmQJquTMtc6fgm5JQzGdsGpA2fqBe3MHWEdt2qzaLySMdN\"]},\"project:/contracts/crowdsale/Crowdsale.sol\":{\"keccak256\":\"0x5565454bf47c1ca54e5546048744677fcb3e47f532865de7533a900f391101f3\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://763caf04fa84e30a1150fddc613afc6aed08bccaf803e6d28a2959696be6633f\",\"dweb:/ipfs/QmStzCsf6QVZUVbdTuCoU9gbqe4yjPBPwf7H2nk8sfZJd5\"]},\"project:/contracts/crowdsale/utils/access/Roles.sol\":{\"keccak256\":\"0x368268f49151ac23c591ca923eab218f9e0373e42a24239dab2571d74715c72d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://0410de25f1d46106f29d67e65387880ecaed2e186b1f6198bdbbbf8f075b38b0\",\"dweb:/ipfs/QmVyh7EDQxkvR8PE1ExU1WYCm4CWZwr6zrR7u2uFVhTBP5\"]},\"project:/contracts/crowdsale/utils/access/roles/WhitelistAdminRole.sol\":{\"keccak256\":\"0x128b499f2b8a3466721b947a9def1d04f50aad27ac3f9ca219852ae0b24a7df7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://538d14776d1206a11c65486fe37b7452894c47db2ac6d386a835d32d42c6fb06\",\"dweb:/ipfs/QmSe32yTbsPGqPeu6PM5Vpwb3wRfQP27YGWLdTBMxouCAw\"]},\"project:/contracts/crowdsale/utils/access/roles/WhitelistedRole.sol\":{\"keccak256\":\"0x464c4d15f99d296aac1fd1ea8d17db8b764d6b6f87a21edf6a409f1adb7aacc5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a69b7bd73fe69d2fc97cf036401e03f814612cf1aaee3d421cc25a207149b1d7\",\"dweb:/ipfs/QmaaEq6P2u1XyJKCyQWYmxEgBBobYwRbPJU1LHfuQZHYD3\"]},\"project:/contracts/crowdsale/validation/WhitelistCrowdsale.sol\":{\"keccak256\":\"0xb518f5da38db3e355ca0af477419341960118c575c131b108a1c71381144befb\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://dbb0dfc76b6e4ccae06c1d44a1bfb152480ae496c5eb129e7a8f395e03d788e7\",\"dweb:/ipfs/QmNMuVCwjp4Bs9npYkfZFN4uAyx3HpZJZeUJ4Q1x23XA8z\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -257,60 +257,60 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nimport \"../Crowdsale.sol\";\nimport \"../utils/access/roles/WhitelistedRole.sol\";\n\n/**\n * @title WhitelistCrowdsale\n * @dev Crowdsale in which only whitelisted users can contribute.\n */\nabstract contract WhitelistCrowdsale is WhitelistedRole, Crowdsale {\n\n    /**\n     * @dev Extend parent behavior requiring beneficiary to be whitelisted. Note that no\n     * restriction is imposed on the account sending the transaction.\n     * @param _beneficiary Token beneficiary\n     * @param _weiAmount Amount of wei contributed\n     */\n\n    function _preValidatePurchase(address _beneficiary, uint256 _weiAmount)\n        internal\n        view\n        override\n    {\n        require(\n            isWhitelisted(_beneficiary),\n            \"WhitelistCrowdsale: beneficiary doesn't have the Whitelisted role\"\n        );\n        super._preValidatePurchase(_beneficiary, _weiAmount);\n    }\n}\n",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\nimport \"../Crowdsale.sol\";\nimport \"../utils/access/roles/WhitelistedRole.sol\";\n\n/**\n * @title WhitelistCrowdsale\n * @dev Crowdsale in which only whitelisted users can contribute.\n */\nabstract contract WhitelistCrowdsale is WhitelistedRole, Crowdsale {\n\n    /**\n     * @dev Extend parent behavior requiring beneficiary to be whitelisted. Note that no\n     * restriction is imposed on the account sending the transaction.\n     * @param _beneficiary Token beneficiary\n     * @param _weiAmount Amount of wei contributed\n     */\n\n    function _preValidatePurchase(address _beneficiary, uint256 _weiAmount)\n        internal\n        view\n        virtual\n        override\n    {\n        require(\n            isWhitelisted(_beneficiary),\n            \"WhitelistCrowdsale: beneficiary doesn't have the Whitelisted role\"\n        );\n        super._preValidatePurchase(_beneficiary, _weiAmount);\n    }\n}\n",
   "sourcePath": "/Users/yaksheshgupta/Desktop/Equistart_Smart_Contract/contracts/contracts/crowdsale/validation/WhitelistCrowdsale.sol",
   "ast": {
     "absolutePath": "project:/contracts/crowdsale/validation/WhitelistCrowdsale.sol",
     "exportedSymbols": {
       "Address": [
-        1390
+        6805
       ],
       "Context": [
-        1412
+        8198
       ],
       "Crowdsale": [
-        3344
+        23033
       ],
       "ERC20": [
-        640
+        5123
       ],
       "IERC20": [
-        718
+        5201
       ],
       "IERC20Metadata": [
-        743
+        5968
       ],
       "IERC20Permit": [
-        779
+        6176
       ],
       "ReentrancyGuard": [
-        53
+        4495
       ],
       "Roles": [
-        4201
+        24347
       ],
       "SafeERC20": [
-        1060
+        6457
       ],
       "SafeMath": [
-        2589
+        11930
       ],
       "WhitelistAdminRole": [
-        4638
+        24893
       ],
       "WhitelistCrowdsale": [
-        5731
+        26117
       ],
       "WhitelistedRole": [
-        4754
+        25009
       ]
     },
-    "id": 5732,
+    "id": 26118,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 5699,
+        "id": 26085,
         "literals": [
           "solidity",
           "^",
@@ -318,29 +318,29 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "32:23:258"
+        "src": "32:23:327"
       },
       {
         "absolutePath": "project:/contracts/crowdsale/Crowdsale.sol",
         "file": "../Crowdsale.sol",
-        "id": 5700,
+        "id": 26086,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 5732,
-        "sourceUnit": 3345,
-        "src": "57:26:258",
+        "scope": 26118,
+        "sourceUnit": 23034,
+        "src": "57:26:327",
         "symbolAliases": [],
         "unitAlias": ""
       },
       {
         "absolutePath": "project:/contracts/crowdsale/utils/access/roles/WhitelistedRole.sol",
         "file": "../utils/access/roles/WhitelistedRole.sol",
-        "id": 5701,
+        "id": 26087,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 5732,
-        "sourceUnit": 4755,
-        "src": "84:51:258",
+        "scope": 26118,
+        "sourceUnit": 25010,
+        "src": "84:51:327",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -349,60 +349,60 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 5703,
+              "id": 26089,
               "name": "WhitelistedRole",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 4754,
-              "src": "280:15:258"
+              "referencedDeclaration": 25009,
+              "src": "280:15:327"
             },
-            "id": 5704,
+            "id": 26090,
             "nodeType": "InheritanceSpecifier",
-            "src": "280:15:258"
+            "src": "280:15:327"
           },
           {
             "baseName": {
-              "id": 5705,
+              "id": 26091,
               "name": "Crowdsale",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 3344,
-              "src": "297:9:258"
+              "referencedDeclaration": 23033,
+              "src": "297:9:327"
             },
-            "id": 5706,
+            "id": 26092,
             "nodeType": "InheritanceSpecifier",
-            "src": "297:9:258"
+            "src": "297:9:327"
           }
         ],
         "canonicalName": "WhitelistCrowdsale",
         "contractDependencies": [],
         "contractKind": "contract",
         "documentation": {
-          "id": 5702,
+          "id": 26088,
           "nodeType": "StructuredDocumentation",
-          "src": "137:102:258",
+          "src": "137:102:327",
           "text": " @title WhitelistCrowdsale\n @dev Crowdsale in which only whitelisted users can contribute."
         },
         "fullyImplemented": false,
-        "id": 5731,
+        "id": 26117,
         "linearizedBaseContracts": [
-          5731,
-          3344,
-          53,
-          4754,
-          4638,
-          1412
+          26117,
+          23033,
+          4495,
+          25009,
+          24893,
+          8198
         ],
         "name": "WhitelistCrowdsale",
-        "nameLocation": "258:18:258",
+        "nameLocation": "258:18:327",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "baseFunctions": [
-              3269
+              22958
             ],
             "body": {
-              "id": 5729,
+              "id": 26115,
               "nodeType": "Block",
-              "src": "709:218:258",
+              "src": "725:218:327",
               "statements": [
                 {
                   "expression": {
@@ -410,12 +410,12 @@
                       {
                         "arguments": [
                           {
-                            "id": 5717,
+                            "id": 26103,
                             "name": "_beneficiary",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 5709,
-                            "src": "754:12:258",
+                            "referencedDeclaration": 26095,
+                            "src": "770:12:327",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -429,18 +429,18 @@
                               "typeString": "address"
                             }
                           ],
-                          "id": 5716,
+                          "id": 26102,
                           "name": "isWhitelisted",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 4688,
-                          "src": "740:13:258",
+                          "referencedDeclaration": 24943,
+                          "src": "756:13:327",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
                             "typeString": "function (address) view returns (bool)"
                           }
                         },
-                        "id": 5718,
+                        "id": 26104,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -448,7 +448,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "740:27:258",
+                        "src": "756:27:327",
                         "tryCall": false,
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
@@ -457,14 +457,14 @@
                       },
                       {
                         "hexValue": "57686974656c69737443726f776473616c653a2062656e656669636961727920646f65736e27742068617665207468652057686974656c697374656420726f6c65",
-                        "id": 5719,
+                        "id": 26105,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "781:67:258",
+                        "src": "797:67:327",
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_0d4d81a9acac4fa209d4fd468306311d92f08da1d0ae45d65f549de57dd92548",
                           "typeString": "literal_string \"WhitelistCrowdsale: beneficiary doesn't have the Whitelisted role\""
@@ -483,7 +483,7 @@
                           "typeString": "literal_string \"WhitelistCrowdsale: beneficiary doesn't have the Whitelisted role\""
                         }
                       ],
-                      "id": 5715,
+                      "id": 26101,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -491,13 +491,13 @@
                         4294967278
                       ],
                       "referencedDeclaration": 4294967278,
-                      "src": "719:7:258",
+                      "src": "735:7:327",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 5720,
+                    "id": 26106,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -505,39 +505,39 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "719:139:258",
+                    "src": "735:139:327",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5721,
+                  "id": 26107,
                   "nodeType": "ExpressionStatement",
-                  "src": "719:139:258"
+                  "src": "735:139:327"
                 },
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "id": 5725,
+                        "id": 26111,
                         "name": "_beneficiary",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5709,
-                        "src": "895:12:258",
+                        "referencedDeclaration": 26095,
+                        "src": "911:12:327",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
                       {
-                        "id": 5726,
+                        "id": 26112,
                         "name": "_weiAmount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 5711,
-                        "src": "909:10:258",
+                        "referencedDeclaration": 26097,
+                        "src": "925:10:327",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -556,32 +556,32 @@
                         }
                       ],
                       "expression": {
-                        "id": 5722,
+                        "id": 26108,
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 4294967271,
-                        "src": "868:5:258",
+                        "src": "884:5:327",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_super$_WhitelistCrowdsale_$5731_$",
+                          "typeIdentifier": "t_type$_t_super$_WhitelistCrowdsale_$26117_$",
                           "typeString": "type(contract super WhitelistCrowdsale)"
                         }
                       },
-                      "id": 5724,
+                      "id": 26110,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "_preValidatePurchase",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 3269,
-                      "src": "868:26:258",
+                      "referencedDeclaration": 22958,
+                      "src": "884:26:327",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256) view"
                       }
                     },
-                    "id": 5727,
+                    "id": 26113,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -589,51 +589,51 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "868:52:258",
+                    "src": "884:52:327",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 5728,
+                  "id": 26114,
                   "nodeType": "ExpressionStatement",
-                  "src": "868:52:258"
+                  "src": "884:52:327"
                 }
               ]
             },
             "documentation": {
-              "id": 5707,
+              "id": 26093,
               "nodeType": "StructuredDocumentation",
-              "src": "314:266:258",
+              "src": "314:266:327",
               "text": " @dev Extend parent behavior requiring beneficiary to be whitelisted. Note that no\n restriction is imposed on the account sending the transaction.\n @param _beneficiary Token beneficiary\n @param _weiAmount Amount of wei contributed"
             },
-            "id": 5730,
+            "id": 26116,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "_preValidatePurchase",
-            "nameLocation": "595:20:258",
+            "nameLocation": "595:20:327",
             "nodeType": "FunctionDefinition",
             "overrides": {
-              "id": 5713,
+              "id": 26099,
               "nodeType": "OverrideSpecifier",
               "overrides": [],
-              "src": "696:8:258"
+              "src": "712:8:327"
             },
             "parameters": {
-              "id": 5712,
+              "id": 26098,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5709,
+                  "id": 26095,
                   "mutability": "mutable",
                   "name": "_beneficiary",
-                  "nameLocation": "624:12:258",
+                  "nameLocation": "624:12:327",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5730,
-                  "src": "616:20:258",
+                  "scope": 26116,
+                  "src": "616:20:327",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -641,10 +641,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 5708,
+                    "id": 26094,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "616:7:258",
+                    "src": "616:7:327",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -655,13 +655,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 5711,
+                  "id": 26097,
                   "mutability": "mutable",
                   "name": "_weiAmount",
-                  "nameLocation": "646:10:258",
+                  "nameLocation": "646:10:327",
                   "nodeType": "VariableDeclaration",
-                  "scope": 5730,
-                  "src": "638:18:258",
+                  "scope": 26116,
+                  "src": "638:18:327",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -669,10 +669,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 5710,
+                    "id": 26096,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "638:7:258",
+                    "src": "638:7:327",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -681,35 +681,35 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "615:42:258"
+              "src": "615:42:327"
             },
             "returnParameters": {
-              "id": 5714,
+              "id": 26100,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "709:0:258"
+              "src": "725:0:327"
             },
-            "scope": 5731,
-            "src": "586:341:258",
+            "scope": 26117,
+            "src": "586:357:327",
             "stateMutability": "view",
-            "virtual": false,
+            "virtual": true,
             "visibility": "internal"
           }
         ],
-        "scope": 5732,
-        "src": "240:689:258",
+        "scope": 26118,
+        "src": "240:705:327",
         "usedErrors": []
       }
     ],
-    "src": "32:898:258"
+    "src": "32:914:327"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.8.13+commit.abaa5c0e.Emscripten.clang"
+    "version": "0.8.14+commit.80d49f37.Emscripten.clang"
   },
   "networks": {},
   "schemaVersion": "3.4.7",
-  "updatedAt": "2023-02-09T14:19:22.047Z",
+  "updatedAt": "2023-02-24T10:21:17.275Z",
   "devdoc": {
     "details": "Crowdsale in which only whitelisted users can contribute.",
     "kind": "dev",

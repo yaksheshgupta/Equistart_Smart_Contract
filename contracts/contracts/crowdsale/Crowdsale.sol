@@ -21,10 +21,10 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
  */
 contract Crowdsale is Context, ReentrancyGuard {
     using SafeMath for uint256;
-    using SafeERC20 for IERC20;
+    using SafeERC20 for ERC20;
 
     // The token being sold
-    IERC20 internal token;
+    ERC20 internal token;
     // changed to internal from private
 
     // Address where funds are collected
@@ -56,7 +56,7 @@ contract Crowdsale is Context, ReentrancyGuard {
     constructor(
         uint256 _Rate,
         address payable _wallet,
-        IERC20 _token
+        ERC20 _token
     ) {
         require(_Rate > 0, "Crowdsale: rate is 0");
         require(_wallet != address(0), "Crowdsale: wallet is the zero address");
@@ -81,7 +81,7 @@ contract Crowdsale is Context, ReentrancyGuard {
     }
 
     receive() external payable {
-        buyTokens(msg.sender);
+        buyTokens(_msgSender());
     }
 
     /**

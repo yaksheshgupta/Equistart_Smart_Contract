@@ -3,6 +3,7 @@ pragma solidity ^0.8.0;
 
 import "../Crowdsale.sol";
 import "../utils/tkn/ERC20Mintable.sol";
+// import "../../ERC20Token.sol" ;
 
 /**
  * @title MintedCrowdsale
@@ -19,6 +20,7 @@ abstract contract MintedCrowdsale is Crowdsale {
      */
     function _deliverTokens(address beneficiary, uint256 tokenAmount)
         internal
+        virtual
         override
     {
         // Potentially dangerous assumption about the type of the token.

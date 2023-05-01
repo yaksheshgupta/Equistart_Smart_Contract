@@ -41,6 +41,30 @@ In this work is same as as the above contract to buy tokens from Crowdsale, But 
     user to buy tokens more than 10;
     4. "Try buying tokens from crowdsale after opeingTime with cap-10"- Trying to buy token in prefered state i.e. Within permitted time and under allowed cap.
     5. "Try buying tokens from crowdsale after closing time"- hecking if the contract allows user to buy tokens after the closing time;
+
+3. MyCrowdSale_V2.test.js
+In this work is same as as the above contract to buy tokens from Crowdsale,But added "goal" and "whitelist"
+So now this contract has "goal","inital time" , "final time" and "whitelist".
+    1.Create the instance of the contracts ERC20Token and CrowdSale;
+    2."Send transction without alloting accounts[1] as whitelisted"- In this we are trying to buy tokens from a "non whitelisted" address hence should return an error.
+    3."whitelist account[1]"-Whitelisting account 1
+    4."Checking finalize and goal reached rewards"-
+        1.First we are increasing time so that i can come inside open window of the crowdSale
+        2.Sending a transaction from account 1
+        3.Increasing time again to surpass the closing time of crowdsale.
+        4.checking if goal reached funcding goal.
+        5.At the end we finalize- funds are transfered to owner. 
+        NOTE- "finalize" should be called after the crowdsale ends.
+        NOTE-if Goal is not reached then all the funds will be refunded if goal is not reached.
+    5."Withdraw token after Crowdsale is finished" - If the crowdsale is success, investers can call "withdrawTokens" function to claim there tokens.
+    6."try to claimRefund after the success of CS"- If Crowdsale is fail investors can call "claimRefund" to get there funds back.
+
+4. MyCrowdSale_V3.test.js-
+This is simple CrowdSale, in which CrowdSale do not have the tokens but have the allowance power to send tokens.
+    1.Create the instance of the contracts ERC20Token and CrowdSale;
+    2."Allowing CrowdSale to sale ERC20"- Used "approve" function so that CrowdSale can sale there tokens.
+    3."buying tokens from account5 using allowance"-Simple buying tokens from CrowdSale.
+    NOTE- This is possible due to changes in the contract.
 =======
  2. CrowdSaleFactory.test.js
 In this contract user can create custom crowdsale
