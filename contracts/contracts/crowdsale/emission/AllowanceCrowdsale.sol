@@ -60,6 +60,6 @@ abstract contract AllowanceCrowdsale is Crowdsale {
         virtual
         override
     {
-        token.safeTransferFrom(_tokenWallet, beneficiary, tokenAmount);
+        token.transferFrom(_tokenWallet, beneficiary, tokenAmount);
     }
 }

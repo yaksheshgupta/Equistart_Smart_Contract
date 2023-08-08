@@ -11,7 +11,7 @@ contract MYCS_Capped_Timed is Crowdsale, CappedCrowdsale, TimedCrowdsale {
         uint256 _closingTime,
         uint256 _Rate,
         address payable _wallet,
-        IERC20 _token
+        ERC20 _token
     )
         CappedCrowdsale(cap)
         TimedCrowdsale(_openingTime, _closingTime)

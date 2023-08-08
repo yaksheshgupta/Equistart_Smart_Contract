@@ -23,7 +23,7 @@ contract MYCS_POSTDEV_WHITE is
         uint256 closingTime_,
         uint256 _Rate,
         address payable _wallet,
-        IERC20 _token
+        ERC20 _token
     )
         PostDeliveryCrowdsale()
         FinalizableCrowdsale()

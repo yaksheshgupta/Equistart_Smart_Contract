@@ -8,7 +8,7 @@ contract MYCS_ALLOWANCE is Crowdsale, AllowanceCrowdsale {
         address holder,
         uint256 _Rate,
         address payable _wallet,
-        IERC20 _token
+        ERC20 _token
     ) Crowdsale(_Rate, _wallet, _token) AllowanceCrowdsale(holder){}
 
     function _deliverTokens(
