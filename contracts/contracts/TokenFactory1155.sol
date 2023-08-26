@@ -1,0 +1,49 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.2;
+import "./ERC1155Token.sol";
+
+
+contract TokenFactory {
+    
+    event NewTokenCreated(string name, string symbol, uint256 amount);
+
+    uint numOfProjects;
+
+    struct projectMeta{
+        uint256 id;
+        string projectName;
+        string symbol;
+        uint256 initialSupply;
+        address tokenBeneficiary;
+        address contractAddress;
+    }
+
+    // projectMeta[] public deployedProjects;
+    mapping(uint => projectMeta) private deployedProjects;
+    
+    function createProject(string memory name, string memory symbol, uint initialSupply, address beneficiary) public {
+        uint projectId = numOfProjects++;
+        projectMeta storage project = deployedProjects[projectId];
+        project.id = projectId;
+        project.projectName = name;
+        project.symbol = symbol;
+        project.initialSupply = initialSupply;
+        project.tokenBeneficiary = beneficiary;
+        project.contractAddress = address(new ERC20Token(name, symbol, initialSupply,  beneficiary));
+        emit NewTokenCreated(name, symbol, initialSupply);
+        // deployedProjects.push(newProject);
+    }
+    
+    function getAllDeployedProjects () public view returns (projectMeta[] memory props){
+        // return deployedProjects;
+        props = new projectMeta[](numOfProjects);
+        
+        for (uint256 index =0; index< numOfProjects; index++){
+            props[index] = deployedProjects[index];
+        }
+    }
+
+    function getProjectById(uint256 projectId) public view returns (projectMeta memory){
+        return deployedProjects[projectId];
+    }
+}
